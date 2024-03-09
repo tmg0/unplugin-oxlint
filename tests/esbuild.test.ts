@@ -5,8 +5,10 @@ import { build } from 'esbuild'
 import Oxlint from '../src/esbuild'
 
 it('esbuild', async () => {
+  const ENTRY_POINT = join(process.cwd(), 'playground/tsup/src/index.ts')
+
   await build({
-    entryPoints: [join(process.cwd(), 'playground/tsup/src/index.ts')],
+    entryPoints: [ENTRY_POINT],
     format: 'esm',
     write: false,
     bundle: true,
@@ -14,8 +16,13 @@ it('esbuild', async () => {
     plugins: [
       Oxlint({
         path: 'playground/tsup',
+        fix: true,
       }),
     ],
   })
-  expect(true).toBe(true)
+
+  setTimeout(async () => {
+    const raw = (await import(`${ENTRY_POINT}?raw`)).default
+    expect(raw.includes('|"|')).toBe(true)
+  }, 500)
 })
