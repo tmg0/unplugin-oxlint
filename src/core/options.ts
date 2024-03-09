@@ -5,6 +5,7 @@ const DEFAULT_OXLINT_OPTIONS: OxlintOptions = {
   path: '.',
   deny: ['correctness'],
   allow: [],
+  fix: false,
   params: '',
 }
 

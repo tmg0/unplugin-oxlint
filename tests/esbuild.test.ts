@@ -5,7 +5,7 @@ import Oxlint from '../src/esbuild'
 
 it('esbuild', async () => {
   await build({
-    entryPoints: [path.resolve(__dirname, 'caces/main.ts')],
+    entryPoints: [path.resolve(__dirname, 'caces/re.ts')],
     format: 'esm',
     write: false,
     bundle: true,

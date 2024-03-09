@@ -63,7 +63,7 @@
     "test": "vitest"
   },
   "peerDependencies": {
-    "oxlint": "^0.2.8"
+    "oxlint": "^0.2.13"
   },
   "dependencies": {
     "defu": "^6.1.4",
