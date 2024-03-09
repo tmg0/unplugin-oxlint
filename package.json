@@ -1,7 +1,7 @@
 {
   "name": "unplugin-oxlint",
   "type": "module",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A universal bundler plugin for integrating the Oxlint linter into your project.",
   "author": "tmg0",
   "license": "MIT",

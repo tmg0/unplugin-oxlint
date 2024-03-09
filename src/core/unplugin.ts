@@ -3,7 +3,7 @@ import { resolveOptions } from './options'
 import { runOxlintCommand } from './oxlint'
 import type { OxlintOptions } from './types'
 
-export const unplugin = createUnplugin<Partial<OxlintOptions>>((rawOptions = {}) => {
+export const unplugin = createUnplugin<Partial<OxlintOptions> | undefined>((rawOptions = {}) => {
   const options = resolveOptions(rawOptions)
 
   return {
