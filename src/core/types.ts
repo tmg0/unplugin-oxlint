@@ -3,5 +3,6 @@ export interface OxlintOptions {
   deny: string[]
   allow: string[]
   fix: boolean
+  config?: string
   params: string
 }

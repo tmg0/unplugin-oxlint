@@ -1,7 +1,7 @@
 import { defu } from 'defu'
 import type { OxlintOptions } from './types'
 
-const DEFAULT_OXLINT_OPTIONS: OxlintOptions = {
+const DEFAULT_OXLINT_OPTIONS: Partial<OxlintOptions> = {
   path: '.',
   deny: ['correctness'],
   allow: [],
@@ -9,6 +9,6 @@ const DEFAULT_OXLINT_OPTIONS: OxlintOptions = {
   params: '',
 }
 
-export function resolveOptions(options: Partial<OxlintOptions> = {}): OxlintOptions {
-  return defu(options, DEFAULT_OXLINT_OPTIONS)
+export function resolveOptions(options: Partial<OxlintOptions> = {}) {
+  return defu(options, DEFAULT_OXLINT_OPTIONS) as OxlintOptions
 }

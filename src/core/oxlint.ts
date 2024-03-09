@@ -11,6 +11,7 @@ export async function runOxlintCommand(options: OxlintOptions) {
       ...options.deny.map(d => ['-D', d]).flat(),
       ...options.allow.map(a => ['-A', a]).flat(),
       options.fix ? '--fix' : '',
+      ...(options.config ? ['-c', options.config] : []),
       ...options.params.split(' '),
     ].filter(Boolean),
     {
