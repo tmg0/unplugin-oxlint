@@ -10,6 +10,7 @@ export async function runOxlintCommand(options: OxlintOptions) {
       'oxlint',
       ...options.deny.map(d => ['-D', d]).flat(),
       ...options.allow.map(a => ['-A', a]).flat(),
+      options.fix ? '--fix' : '',
       ...options.params.split(' '),
     ].filter(Boolean),
     {
