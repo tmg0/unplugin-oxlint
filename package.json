@@ -1,0 +1,29 @@
+{
+  "name": "unplugin-oxlint",
+  "version": "0.0.0",
+  "description": "A universal bundler plugin for integrating the Oxlint linter into your project.",
+  "main": "dist/indes.mjs",
+  "scripts": {
+    "test": "vitest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tmg0/unplugin-oxlint.git"
+  },
+  "keywords": [
+    "eslint",
+    "oxlint",
+    "plugin",
+    "rolldown",
+    "rollup",
+    "esbuild",
+    "webpack",
+    "vite"
+  ],
+  "author": "tmg0",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tmg0/unplugin-oxlint/issues"
+  },
+  "homepage": "https://github.com/tmg0/unplugin-oxlint#readme"
+}
