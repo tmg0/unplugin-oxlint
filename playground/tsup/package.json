@@ -1,0 +1,10 @@
+{
+  "name": "@unplugin-oxlint/tsup",
+  "scripts": {
+    "dev": "tsup --watch"
+  },
+  "devDependencies": {
+    "tsup": "^8.0.2",
+    "unplugin-oxlint": "link:..\\.."
+  }
+}

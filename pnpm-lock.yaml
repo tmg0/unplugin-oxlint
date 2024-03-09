@@ -4,42 +4,53 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
-dependencies:
-  defu:
-    specifier: ^6.1.4
-    version: 6.1.4
-  execa:
-    specifier: ^8.0.1
-    version: 8.0.1
-  unplugin:
-    specifier: ^1.9.0
-    version: 1.9.0
+importers:
 
-devDependencies:
-  '@antfu/eslint-config':
-    specifier: ^2.8.0
-    version: 2.8.0(@vue/compiler-sfc@3.4.21)(eslint@8.57.0)(typescript@5.4.2)(vitest@1.3.1)
-  '@types/node':
-    specifier: ^20.11.25
-    version: 20.11.25
-  esbuild:
-    specifier: ^0.20.1
-    version: 0.20.1
-  eslint:
-    specifier: ^8.57.0
-    version: 8.57.0
-  oxlint:
-    specifier: latest
-    version: 0.2.13
-  tsup:
-    specifier: ^8.0.2
-    version: 8.0.2(typescript@5.4.2)
-  typescript:
-    specifier: ^5.4.2
-    version: 5.4.2
-  vitest:
-    specifier: ^1.3.1
-    version: 1.3.1(@types/node@20.11.25)
+  .:
+    dependencies:
+      defu:
+        specifier: ^6.1.4
+        version: 6.1.4
+      execa:
+        specifier: ^8.0.1
+        version: 8.0.1
+      unplugin:
+        specifier: ^1.9.0
+        version: 1.9.0
+    devDependencies:
+      '@antfu/eslint-config':
+        specifier: ^2.8.0
+        version: 2.8.0(@vue/compiler-sfc@3.4.21)(eslint@8.57.0)(typescript@5.4.2)(vitest@1.3.1)
+      '@types/node':
+        specifier: ^20.11.25
+        version: 20.11.25
+      esbuild:
+        specifier: ^0.20.1
+        version: 0.20.1
+      eslint:
+        specifier: ^8.57.0
+        version: 8.57.0
+      oxlint:
+        specifier: ^0.2.13
+        version: 0.2.13
+      tsup:
+        specifier: ^8.0.2
+        version: 8.0.2(typescript@5.4.2)
+      typescript:
+        specifier: ^5.4.2
+        version: 5.4.2
+      vitest:
+        specifier: ^1.3.1
+        version: 1.3.1(@types/node@20.11.25)
+
+  playground/tsup:
+    devDependencies:
+      tsup:
+        specifier: ^8.0.2
+        version: 8.0.2(typescript@5.4.2)
+      unplugin-oxlint:
+        specifier: link:..\..
+        version: link:../..
 
 packages:
 

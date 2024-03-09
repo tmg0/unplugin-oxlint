@@ -8,7 +8,7 @@ export const unplugin = createUnplugin<Partial<OxlintOptions>>((rawOptions = {})
 
   return {
     name: 'oxlint',
-    async buildEnd() {
+    async buildStart() {
       await runOxlintCommand(options)
     },
   }
