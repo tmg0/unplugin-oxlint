@@ -1,18 +1,19 @@
-import path from 'node:path'
+import { join } from 'node:path'
+import process from 'node:process'
 import { expect, it } from 'vitest'
 import { build } from 'esbuild'
 import Oxlint from '../src/esbuild'
 
 it('esbuild', async () => {
   await build({
-    entryPoints: [path.resolve(__dirname, 'caces/re.ts')],
+    entryPoints: [join(process.cwd(), 'playground/tsup/src/index.ts')],
     format: 'esm',
     write: false,
     bundle: true,
     platform: 'node',
     plugins: [
       Oxlint({
-        path: './tests/caces',
+        path: 'playground/tsup',
       }),
     ],
   })
