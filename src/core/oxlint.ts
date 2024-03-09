@@ -10,9 +10,12 @@ export async function runOxlintCommand(options: OxlintOptions) {
       'oxlint',
       ...options.deny.map(d => ['-D', d]).flat(),
       ...options.allow.map(a => ['-A', a]).flat(),
-      options.fix ? '--fix' : '',
       ...(options.config ? ['-c', options.config] : []),
       ...options.params.split(' '),
+      options.fix ? '--fix' : '',
+      options.noIgnore ? '--no-ignore' : '',
+      options.quiet ? '--quiet' : '',
+      options.denyWarnings ? '--deny-warnings' : '',
     ].filter(Boolean),
     {
       cwd: join(process.cwd(), options.path),

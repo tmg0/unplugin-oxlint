@@ -3,6 +3,9 @@ export interface OxlintOptions {
   deny: string[]
   allow: string[]
   fix: boolean
-  config?: string
+  config: string
   params: string
+  noIgnore: boolean
+  quiet: boolean
+  denyWarnings: boolean
 }

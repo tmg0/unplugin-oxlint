@@ -1,1 +1,1 @@
-export const re = /(?:'|\"|`)/gm
+export const re = /(?:'|"|`)/gm

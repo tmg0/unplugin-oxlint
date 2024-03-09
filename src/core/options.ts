@@ -7,6 +7,10 @@ const DEFAULT_OXLINT_OPTIONS: Partial<OxlintOptions> = {
   allow: [],
   fix: false,
   params: '',
+  config: '',
+  noIgnore: false,
+  quiet: false,
+  denyWarnings: false,
 }
 
 export function resolveOptions(options: Partial<OxlintOptions> = {}) {
