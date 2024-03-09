@@ -82,6 +82,7 @@
   "dependencies": {
     "defu": "^6.1.4",
     "execa": "^8.0.1",
+    "nypm": "^0.3.8",
     "unplugin": "^1.9.0"
   },
   "devDependencies": {

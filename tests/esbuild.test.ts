@@ -16,7 +16,6 @@ it('esbuild', async () => {
     plugins: [
       Oxlint({
         path: 'playground/tsup',
-        fix: true,
       }),
     ],
   })
