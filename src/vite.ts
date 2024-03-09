@@ -4,7 +4,7 @@
  * @module
  */
 
-import unplugin from './index'
+import { unplugin } from './core/unplugin'
 
 /**
  * Vite plugin

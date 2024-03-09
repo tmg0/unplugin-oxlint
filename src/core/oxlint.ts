@@ -1,9 +1,10 @@
 import process from 'node:process'
+import { join } from 'node:path'
 import { execa } from 'execa'
 import type { OxlintOptions } from './types'
 
 export async function runOxlintCommand(options: OxlintOptions) {
-  return execa(
+  await execa(
     'npx',
     [
       'oxlint',
@@ -12,7 +13,7 @@ export async function runOxlintCommand(options: OxlintOptions) {
       ...options.params.split(' '),
     ].filter(Boolean),
     {
-      cwd: `${process.cwd?.()}/${options.path}`,
+      cwd: join(process.cwd(), options.path),
       stdio: 'inherit',
     },
   )
