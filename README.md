@@ -78,6 +78,13 @@ For all options please refer to [docs](https://github.com/52-entertainment/vite-
 
 This plugin accepts all [vite-plugin-oxlint](https://github.com/52-entertainment/vite-plugin-oxlint), and some extra options that are specific to this plugin.
 
+### `options.path`
+
+- Type: `string | string[]`
+- Default: `''`
+
+Single file, single path or list of paths
+
 ### `options.fix`
 
 - Type: `boolean`
