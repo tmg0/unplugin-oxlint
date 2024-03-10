@@ -23,6 +23,7 @@ async function runNpxCommand(command: NpxCommand, args: string[], ctx: OxlintCon
     ].filter(Boolean),
     {
       stdio: 'inherit',
+      reject: false,
     },
   )
 }
@@ -73,15 +74,10 @@ export async function runEslintCommand(ids: string | string[], ctx: OxlintContex
     return ['.']
   })().flat().map(path => join(process.cwd(), path))
 
-  try {
-    await runNpxCommand('eslint', [
-      options.fix ? '--fix' : '',
-      ...paths,
-    ], ctx)
-  }
-  catch {
-    // TODO: Throw error
-  }
+  await runNpxCommand('eslint', [
+    options.fix ? '--fix' : '',
+    ...paths,
+  ], ctx)
 }
 
 export async function runLintCommand(ids: string | string[], ctx: OxlintContext) {
