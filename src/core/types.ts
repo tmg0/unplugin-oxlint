@@ -24,7 +24,6 @@ export interface Oxlint {
 export interface OxlintContext {
   version: string
   options: OxlintOptions
-  getPackageManager: () => PackageManagerName
-  setupPackageManager: () => Promise<PackageManagerName>
+  getPackageManager: () => Promise<PackageManagerName>
   runOxlintCommand: (ctx: OxlintContext) => Promise<void>
 }

@@ -11,8 +11,6 @@ export function createOxlint(options: OxlintOptions) {
     await runOxlintCommand(ctx)
   }
 
-  ctx.setupPackageManager()
-
   return {
     options,
     init,
@@ -20,15 +18,13 @@ export function createOxlint(options: OxlintOptions) {
 }
 
 function createInternalContext(options: OxlintOptions): OxlintContext {
-  let packageManagerName: PackageManagerName = 'npm'
+  let packageManagerName: PackageManagerName
 
-  async function setupPackageManager(): Promise<PackageManagerName> {
-    const pkg = await detectPackageManager(process.cwd())
-    packageManagerName = pkg?.name ?? 'npm'
-    return packageManagerName
-  }
-
-  function getPackageManager() {
+  async function getPackageManager() {
+    if (!packageManagerName) {
+      const pkg = await detectPackageManager(process.cwd())
+      packageManagerName = pkg?.name ?? 'npm'
+    }
     return packageManagerName
   }
 
@@ -36,7 +32,6 @@ function createInternalContext(options: OxlintOptions): OxlintContext {
     version,
     options,
     getPackageManager,
-    setupPackageManager,
     runOxlintCommand,
   }
 }

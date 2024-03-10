@@ -11,7 +11,7 @@ const agents = {
 }
 
 async function runNpxCommand(command: NpxCommand, args: string[], ctx: OxlintContext) {
-  const [agent, dlx] = agents[ctx.getPackageManager() ?? 'npm']
+  const [agent, dlx] = agents[(await ctx.getPackageManager()) ?? 'npm']
 
   await execa(
     agent,
