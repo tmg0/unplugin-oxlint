@@ -11,17 +11,19 @@ export function createOxlint(options: OxlintOptions) {
     return ctx.runLintCommand(ids, ctx)
   }
 
-  async function init() {
+  async function setup() {
     await runLintCommandWithContext([])
   }
 
   return {
     options,
-    init,
+    setup,
+    getHoldingStatus: ctx.getHoldingStatus,
   }
 }
 
 function createInternalContext(options: OxlintOptions): OxlintContext {
+  let isHolding = true
   let packageManagerName: PackageManagerName | undefined = options.packageManager
 
   async function getPackageManager() {
@@ -32,10 +34,20 @@ function createInternalContext(options: OxlintOptions): OxlintContext {
     return packageManagerName
   }
 
+  function getHoldingStatus() {
+    return isHolding
+  }
+
+  function setHoldingStatus(value: boolean) {
+    isHolding = value
+  }
+
   return {
     version,
     options,
     getPackageManager,
     runLintCommand,
+    getHoldingStatus,
+    setHoldingStatus,
   }
 }

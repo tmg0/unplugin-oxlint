@@ -19,7 +19,7 @@ export type PackageManagerName = PackageManager['name']
 
 export interface Oxlint {
   options: OxlintOptions
-  init: () => Promise<void>
+  setup: () => Promise<void>
 }
 
 export interface OxlintContext {
@@ -27,4 +27,6 @@ export interface OxlintContext {
   options: OxlintOptions
   getPackageManager: () => Promise<PackageManagerName>
   runLintCommand: (ids: string | string[], ctx: OxlintContext) => Promise<void>
+  getHoldingStatus: () => boolean
+  setHoldingStatus: (value: boolean) => void
 }

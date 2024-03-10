@@ -81,7 +81,9 @@ export async function runEslintCommand(ids: string | string[], ctx: OxlintContex
 }
 
 export async function runLintCommand(ids: string | string[], ctx: OxlintContext) {
+  ctx.setHoldingStatus(true)
   await runOxlintCommand(ids, ctx)
   if (await doesDependencyExist('eslint'))
     await runEslintCommand(ids, ctx)
+  ctx.setHoldingStatus(false)
 }
