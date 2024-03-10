@@ -53,10 +53,10 @@ export async function doesDependencyExist(name: string) {
   const segments = normalize(process.cwd()).split('/')
   const path = join(segments.join('/') || '/', 'package.json')
   if (fse.pathExistsSync(path)) {
-    const packageJSON = await fse.readJSON(path)
-    if (Object.keys(packageJSON.dependencies).includes(name))
+    const packageJSON = (await fse.readJSON(path))
+    if (Object.keys(packageJSON.dependencies ?? {}).includes(name))
       return true
-    if (Object.keys(packageJSON.devDependencies).includes(name))
+    if (Object.keys(packageJSON.devDependencies ?? {}).includes(name))
       return true
   }
   return false
@@ -84,7 +84,7 @@ export async function runEslintCommand(ids: string | string[], ctx: OxlintContex
   }
 }
 
-export async function runLinkCommand(ids: string | string[], ctx: OxlintContext) {
+export async function runLintCommand(ids: string | string[], ctx: OxlintContext) {
   await runOxlintCommand(ids, ctx)
   if (await doesDependencyExist('eslint'))
     await runEslintCommand(ids, ctx)

@@ -2,13 +2,13 @@ import process from 'node:process'
 import { detectPackageManager } from 'nypm'
 import { version } from '../../package.json'
 import type { OxlintContext, OxlintOptions, PackageManagerName } from './types'
-import { runLinkCommand } from './oxlint'
+import { runLintCommand } from './oxlint'
 
 export function createOxlint(options: OxlintOptions) {
   const ctx = createInternalContext(options)
 
   async function init() {
-    await ctx.runLinkCommand([], ctx)
+    await ctx.runLintCommand([], ctx)
   }
 
   return {
@@ -32,6 +32,6 @@ function createInternalContext(options: OxlintOptions): OxlintContext {
     version,
     options,
     getPackageManager,
-    runLinkCommand,
+    runLintCommand,
   }
 }

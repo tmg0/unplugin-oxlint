@@ -26,5 +26,5 @@ export interface OxlintContext {
   version: string
   options: OxlintOptions
   getPackageManager: () => Promise<PackageManagerName>
-  runLinkCommand: (ids: string | string[], ctx: OxlintContext) => Promise<void>
+  runLintCommand: (ids: string | string[], ctx: OxlintContext) => Promise<void>
 }
