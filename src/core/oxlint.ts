@@ -66,14 +66,18 @@ export async function runEslintCommand(ids: string | string[], ctx: OxlintContex
 
   await runNpxCommand('eslint', [
     options.fix ? '--fix' : '',
+    options.noIgnore ? '--no-ignore' : '',
+    options.quiet ? '--quiet' : '',
     ...paths,
   ], ctx)
 }
 
 export async function runLintCommand(ids: string | string[], ctx: OxlintContext) {
   ctx.setHoldingStatus(true)
-  await runOxlintCommand(ids, ctx)
-  if (await doesDependencyExist('eslint'))
-    await runEslintCommand(ids, ctx)
+  const hasEslint = await doesDependencyExist('eslint')
+  await Promise.all([
+    runOxlintCommand(ids, ctx),
+    hasEslint ? runEslintCommand(ids, ctx) : undefined
+  ].map(Boolean)) 
   ctx.setHoldingStatus(false)
 }

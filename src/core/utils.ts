@@ -1,5 +1,7 @@
 import { isAbsolute, join } from 'node:path'
 import process from 'node:process'
+import { hash } from 'ohash'
+import fse from 'fs-extra'
 
 export function until(value: () => any, truthyValue: any = true, ms: number = 500): Promise<void> {
   return new Promise((resolve) => {
@@ -33,4 +35,9 @@ export function normalizeAbsolutePath(ids: string | string[], defaults: string |
   })()
     .flat()
     .map(path => isAbsolute(path) ? path : join(process.cwd(), path))
+}
+
+export function generateFileHash(id: string) {
+  const [path] = normalizeAbsolutePath(id, [])
+  return hash(fse.readFileSync(path))
 }

@@ -31,4 +31,6 @@ export interface OxlintContext {
   runLintCommand: (ids: string | string[], ctx: OxlintContext) => Promise<void>
   getHoldingStatus: () => boolean
   setHoldingStatus: (value: boolean) => void
+  getFileHash: (id: string) => string
+  setFileHash: (id: string, hash: string) => void
 }

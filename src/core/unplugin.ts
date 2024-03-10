@@ -5,7 +5,7 @@ import chokidar from 'chokidar'
 import { resolveOptions } from './options'
 import type { OxlintOptions } from './types'
 import { createOxlint } from './context'
-import { normalizeIgnores, until } from './utils'
+import { generateFileHash, normalizeIgnores, until } from './utils'
 
 export const unplugin = createUnplugin<Partial<OxlintOptions> | undefined>((rawOptions = {}) => {
   const options = resolveOptions(rawOptions)
@@ -19,7 +19,13 @@ export const unplugin = createUnplugin<Partial<OxlintOptions> | undefined>((rawO
   })
 
   watcher.on('change', (id) => {
+    if (ctx.getHoldingStatus())
+      return
+    const hash = generateFileHash(id)
+    if (hash === ctx.getFileHash(id))
+      return
     ctx.runLintCommand(id)
+    ctx.setFileHash(id, hash)
   })
 
   return {

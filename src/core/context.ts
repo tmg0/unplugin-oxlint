@@ -20,12 +20,16 @@ export function createOxlint(options: OxlintOptions) {
     setup,
     runLintCommand: runLintCommandWithContext,
     getHoldingStatus: ctx.getHoldingStatus,
+    getFileHash: ctx.getFileHash,
+    setFileHash: ctx.setFileHash,
   }
 }
 
 function createInternalContext(options: OxlintOptions): OxlintContext {
   let isHolding = true
   let packageManagerName: PackageManagerName | undefined = options.packageManager
+
+  const fileHashRecord: Record<string, string> = {}
 
   async function getPackageManager() {
     if (!packageManagerName) {
@@ -43,6 +47,14 @@ function createInternalContext(options: OxlintOptions): OxlintContext {
     isHolding = value
   }
 
+  function getFileHash(id: string) {
+    return fileHashRecord[id]
+  }
+
+  function setFileHash(id: string, hash: string) {
+    fileHashRecord[id] = hash
+  }
+
   return {
     version,
     options,
@@ -50,5 +62,7 @@ function createInternalContext(options: OxlintOptions): OxlintContext {
     runLintCommand,
     getHoldingStatus,
     setHoldingStatus,
+    getFileHash,
+    setFileHash,
   }
 }
