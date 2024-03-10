@@ -30,6 +30,9 @@ importers:
       esbuild:
         specifier: ^0.20.1
         version: 0.20.1
+      eslint:
+        specifier: ^8.57.0
+        version: 8.57.0
       jiti:
         specifier: ^1.21.0
         version: 1.21.0

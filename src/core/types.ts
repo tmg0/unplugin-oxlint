@@ -10,6 +10,7 @@ export interface OxlintOptions {
   noIgnore: boolean
   quiet: boolean
   denyWarnings: boolean
+  packageManager?: PackageManagerName | undefined
 }
 
 export type NpxCommand = 'oxlint' | 'eslint'
@@ -25,5 +26,5 @@ export interface OxlintContext {
   version: string
   options: OxlintOptions
   getPackageManager: () => Promise<PackageManagerName>
-  runOxlintCommand: (ids: string | string[], ctx: OxlintContext) => Promise<void>
+  runLinkCommand: (ids: string | string[], ctx: OxlintContext) => Promise<void>
 }
