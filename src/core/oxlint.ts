@@ -2,8 +2,9 @@ import process from 'node:process'
 import { join, normalize } from 'node:path'
 import { execa } from 'execa'
 import fse from 'fs-extra'
+import antfu from '@antfu/eslint-config'
 import type { NpxCommand, OxlintContext } from './types'
-import { normalizeAbsolutePath } from './utils'
+import { createEslint, isDirectory, normalizeAbsolutePath } from './utils'
 
 const agents = {
   bun: ['bunx'],
@@ -64,12 +65,29 @@ export async function runEslintCommand(ids: string | string[], ctx: OxlintContex
   const options = ctx.options
   const paths = normalizeAbsolutePath(ids, options.path || ['.'])
 
-  await runNpxCommand('eslint', [
-    options.fix ? '--fix' : '',
-    options.noIgnore ? '--no-ignore' : '',
-    options.quiet ? '--quiet' : '',
-    ...paths,
-  ], ctx)
+  const overrideConfig = await antfu()
+  const eslint = await createEslint(overrideConfig)
+
+  const results = await eslint.lintFiles(paths.map((id) => {
+    if (isDirectory(id))
+      return join(id, '**/*.{ts,tsx,js,jsx,cjs,mjs,mts,cts,vue,svelte}')
+    return id
+  }))
+
+  console.log
+
+  const formatter = await eslint.loadFormatter('stylish')
+  const resultText = formatter.format(results)
+
+  // 4. Output it.
+  console.log(resultText)
+
+  // await runNpxCommand('eslint', [
+  //   options.fix ? '--fix' : '',
+  //   options.noIgnore ? '--no-ignore' : '',
+  //   options.quiet ? '--quiet' : '',
+  //   ...paths,
+  // ], ctx)
 }
 
 export async function runLintCommand(ids: string | string[], ctx: OxlintContext) {
@@ -77,7 +95,7 @@ export async function runLintCommand(ids: string | string[], ctx: OxlintContext)
   const hasEslint = await doesDependencyExist('eslint')
   await Promise.all([
     runOxlintCommand(ids, ctx),
-    hasEslint ? runEslintCommand(ids, ctx) : undefined
-  ].map(Boolean)) 
+    hasEslint ? runEslintCommand(ids, ctx) : undefined,
+  ].map(Boolean))
   ctx.setHoldingStatus(false)
 }
