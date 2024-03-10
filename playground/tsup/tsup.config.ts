@@ -5,6 +5,8 @@ export default defineConfig({
   entry: ['src/index.ts'],
   clean: true,
   esbuildPlugins: [
-    Oxlint(),
+    Oxlint({
+      packageManager: 'npm',
+    }),
   ],
 })

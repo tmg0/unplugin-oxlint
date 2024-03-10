@@ -4,6 +4,7 @@
     "dev": "tsup --watch"
   },
   "devDependencies": {
+    "eslint": "^8.57.0",
     "tsup": "^8.0.2",
     "unplugin-oxlint": "link:..\\.."
   }
