@@ -78,23 +78,21 @@
     "test": "vitest"
   },
   "peerDependencies": {
-    "eslint": "^8.57.0",
-    "eslint-plugin-oxlint": "^0.2.4",
     "oxlint": "^0.2.13"
   },
   "dependencies": {
     "c12": "^1.10.0",
     "defu": "^6.1.4",
     "execa": "^8.0.1",
+    "fs-extra": "^11.2.0",
     "nypm": "^0.3.8",
     "unplugin": "^1.9.0"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^2.8.0",
+    "@types/fs-extra": "^11.0.4",
     "@types/node": "^20.11.25",
     "esbuild": "^0.20.1",
-    "eslint": "^8.57.0",
-    "eslint-plugin-oxlint": "^0.2.4",
     "jiti": "^1.21.0",
     "oxlint": "^0.2.13",
     "tsup": "^8.0.2",

@@ -8,7 +8,7 @@ export function createOxlint(options: OxlintOptions) {
   const ctx = createInternalContext(options)
 
   async function init() {
-    await runOxlintCommand([], ctx)
+    await ctx.runOxlintCommand([], ctx)
   }
 
   return {
