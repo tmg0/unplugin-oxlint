@@ -7,8 +7,12 @@ import { runLintCommand } from './oxlint'
 export function createOxlint(options: OxlintOptions) {
   const ctx = createInternalContext(options)
 
+  function runLintCommandWithContext(ids: string | string[]) {
+    return ctx.runLintCommand(ids, ctx)
+  }
+
   async function init() {
-    await ctx.runLintCommand([], ctx)
+    await runLintCommandWithContext([])
   }
 
   return {
