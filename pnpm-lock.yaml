@@ -39,9 +39,6 @@ importers:
       eslint:
         specifier: ^8.57.0
         version: 8.57.0
-      jiti:
-        specifier: ^1.21.0
-        version: 1.21.0
       oxlint:
         specifier: ^0.2.13
         version: 0.2.13
@@ -2680,11 +2677,6 @@ packages:
       '@isaacs/cliui': 8.0.2
     optionalDependencies:
       '@pkgjs/parseargs': 0.11.0
-    dev: true
-
-  /jiti@1.21.0:
-    resolution: {integrity: sha512-gFqAIbuKyyso/3G2qhiO2OM6shY6EPP/R0+mkDbyspxKazh8BXDC5FiFsUjlczgdNz/vfra0da2y+aHrusLG/Q==}
-    hasBin: true
     dev: true
 
   /joycon@3.1.1:

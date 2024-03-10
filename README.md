@@ -6,13 +6,13 @@
 
 ```bash
 # npm
-npm i -D unplugin-oxlint
+npm i -D oxlint unplugin-oxlint
 
 # pnpm
-pnpm add -D unplugin-oxlint
+pnpm add -D oxlint unplugin-oxlint
 
 # yar
-yarn add -D unplugin-oxlint
+yarn add -D oxlint unplugin-oxlint
 ```
 
 ## Usage
@@ -125,6 +125,25 @@ Ensure warnings produce a non-zero exit code
 - Type: `'npm' | 'pnpm' | 'yarn' | 'bun'`
 
 Declare the package manager which you want to use
+
+## Eslint
+
+If you are looking for a way to use oxlint in projects that still need ESLint, You can use [eslint-plugin-oxlint](https://github.com/oxc-project/eslint-plugin-oxlint) to turn off ESLint rules that are already supported by oxlint.
+
+The rules are extracted from [here](https://github.com/oxc-project/eslint-plugin-oxlint?tab=readme-ov-file)
+
+```bash
+# npm
+npm i -D eslint eslint-plugin-oxlint
+
+# pnpm
+pnpm add -D eslint eslint-plugin-oxlint
+
+# yar
+yarn add -D eslint eslint-plugin-oxlint
+```
+
+`unplugin-oxlint` will automatically run the `eslint` script after `oxlint` when build start.
 
 ## License
 
