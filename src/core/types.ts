@@ -1,6 +1,8 @@
 import type { PackageManager } from 'nypm'
 
 export interface OxlintOptions {
+  includes: RegExp[]
+  excludes: RegExp[]
   path: string | string[]
   deny: string[]
   allow: string[]

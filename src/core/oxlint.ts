@@ -3,6 +3,7 @@ import { join, normalize } from 'node:path'
 import { execa } from 'execa'
 import fse from 'fs-extra'
 import type { NpxCommand, OxlintContext } from './types'
+import { normalizeAbsolutePath } from './utils'
 
 const agents = {
   bun: ['bunx'],
@@ -31,11 +32,7 @@ async function runNpxCommand(command: NpxCommand, args: string[], ctx: OxlintCon
 export async function runOxlintCommand(ids: string | string[], ctx: OxlintContext) {
   const options = ctx.options
 
-  const paths = (() => {
-    if (Array.isArray(ids) ? !!ids.length : !!ids)
-      return [ids]
-    return [options.path]
-  })().flat().map(path => join(process.cwd(), path))
+  const paths = normalizeAbsolutePath(ids, options.path)
 
   await runNpxCommand('oxlint', [
     ...options.deny.map(d => ['-D', d]).flat(),
@@ -65,14 +62,7 @@ export async function doesDependencyExist(name: string) {
 
 export async function runEslintCommand(ids: string | string[], ctx: OxlintContext) {
   const options = ctx.options
-
-  const paths = (() => {
-    if (Array.isArray(ids) ? !!ids.length : !!ids)
-      return [ids]
-    if (options.path)
-      return [options.path]
-    return ['.']
-  })().flat().map(path => join(process.cwd(), path))
+  const paths = normalizeAbsolutePath(ids, options.path || ['.'])
 
   await runNpxCommand('eslint', [
     options.fix ? '--fix' : '',

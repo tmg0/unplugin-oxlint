@@ -18,6 +18,7 @@ export function createOxlint(options: OxlintOptions) {
   return {
     options,
     setup,
+    runLintCommand: runLintCommandWithContext,
     getHoldingStatus: ctx.getHoldingStatus,
   }
 }

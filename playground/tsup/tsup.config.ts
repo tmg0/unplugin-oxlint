@@ -6,6 +6,7 @@ export default defineConfig({
   clean: true,
   esbuildPlugins: [
     Oxlint({
+      path: 'src',
       packageManager: 'npm',
     }),
   ],
