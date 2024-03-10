@@ -12,7 +12,7 @@ export interface OxlintOptions {
   denyWarnings: boolean
 }
 
-export type NpxCommand = 'oxlint'
+export type NpxCommand = 'oxlint' | 'eslint'
 
 export type PackageManagerName = PackageManager['name']
 
@@ -25,5 +25,5 @@ export interface OxlintContext {
   version: string
   options: OxlintOptions
   getPackageManager: () => Promise<PackageManagerName>
-  runOxlintCommand: (ctx: OxlintContext) => Promise<void>
+  runOxlintCommand: (ids: string | string[], ctx: OxlintContext) => Promise<void>
 }

@@ -3,7 +3,7 @@ import type { OxlintOptions } from './types'
 
 const DEFAULT_OXLINT_OPTIONS: Partial<OxlintOptions> = {
   path: '.',
-  deny: ['correctness'],
+  deny: [],
   allow: [],
   fix: false,
   params: '',

@@ -1,6 +1,8 @@
 import process from 'node:process'
 import { join } from 'node:path'
 import { execa } from 'execa'
+import { loadConfig } from 'c12'
+import type { Linter } from 'eslint'
 import type { NpxCommand, OxlintContext } from './types'
 
 const agents = {
@@ -26,9 +28,14 @@ async function runNpxCommand(command: NpxCommand, args: string[], ctx: OxlintCon
   )
 }
 
-export async function runOxlintCommand(ctx: OxlintContext) {
+export async function runOxlintCommand(ids: string | string[], ctx: OxlintContext) {
   const options = ctx.options
-  const paths = [options.path].flat().map(path => join(process.cwd(), path))
+
+  const paths = (() => {
+    if (Array.isArray(ids) ? !!ids.length : !!ids)
+      return [ids]
+    return [options.path]
+  })().flat().map(path => join(process.cwd(), path))
 
   await runNpxCommand('oxlint', [
     ...options.deny.map(d => ['-D', d]).flat(),
@@ -42,3 +49,10 @@ export async function runOxlintCommand(ctx: OxlintContext) {
     ...paths,
   ], ctx)
 }
+
+export async function resolveEslintConfig() {
+  const { config } = await loadConfig<Linter.FlatConfig>({ name: 'eslint' })
+  return config
+}
+
+export async function runEslintCommand() {}

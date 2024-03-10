@@ -74,12 +74,16 @@
     "play:tsup": "cd playground/tsup && pnpm dev",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
+    "postinstall": "jiti scripts/postinstall.ts",
     "test": "vitest"
   },
   "peerDependencies": {
+    "eslint": "^8.57.0",
+    "eslint-plugin-oxlint": "^0.2.4",
     "oxlint": "^0.2.13"
   },
   "dependencies": {
+    "c12": "^1.10.0",
     "defu": "^6.1.4",
     "execa": "^8.0.1",
     "nypm": "^0.3.8",
@@ -90,6 +94,8 @@
     "@types/node": "^20.11.25",
     "esbuild": "^0.20.1",
     "eslint": "^8.57.0",
+    "eslint-plugin-oxlint": "^0.2.4",
+    "jiti": "^1.21.0",
     "oxlint": "^0.2.13",
     "tsup": "^8.0.2",
     "typescript": "^5.4.2",
