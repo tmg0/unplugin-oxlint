@@ -1,6 +1,7 @@
 import process from 'node:process'
-import { join } from 'node:path'
+import { join, normalize } from 'node:path'
 import { execa } from 'execa'
+import fse from 'fs-extra'
 import type { NpxCommand, OxlintContext } from './types'
 
 const agents = {
@@ -49,11 +50,15 @@ export async function runOxlintCommand(ids: string | string[], ctx: OxlintContex
 }
 
 export async function doesDependencyExist(name: string) {
-  const packageJSON = await import(join(process.cwd(), 'package.json'))
-  if (Object.keys(packageJSON.dependencies).includes(name))
-    return true
-  if (Object.keys(packageJSON.devDependencies).includes(name))
-    return true
+  const segments = normalize(process.cwd()).split('/')
+  const path = join(segments.join('/') || '/', 'package.json')
+  if (fse.pathExistsSync(path)) {
+    const packageJSON = await fse.readJSON(path)
+    if (Object.keys(packageJSON.dependencies).includes(name))
+      return true
+    if (Object.keys(packageJSON.devDependencies).includes(name))
+      return true
+  }
   return false
 }
 
