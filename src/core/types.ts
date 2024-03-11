@@ -1,3 +1,4 @@
+import type { ESLint } from 'eslint'
 import type { PackageManager } from 'nypm'
 
 export interface OxlintOptions {
@@ -35,6 +36,4 @@ export interface OxlintContext {
   setFileHash: (id: string, hash: string) => void
 }
 
-export interface CreateESLintOptions {
-  fix: boolean
-}
+export type CreateESLintOptions = ESLint.Options

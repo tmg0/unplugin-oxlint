@@ -3,6 +3,7 @@ import { join, normalize } from 'node:path'
 import { execa } from 'execa'
 import fse from 'fs-extra'
 import { ESLint } from 'eslint'
+import { defu } from 'defu'
 import type { NpxCommand, OxlintContext } from './types'
 import { createESLint, normalizeAbsolutePath } from './utils'
 
@@ -61,18 +62,28 @@ export async function doesDependencyExist(name: string) {
   return false
 }
 
+function resolveESLintOptions({ options }: OxlintContext): ESLint.Options {
+  return defu({}, {
+    fix: options.fix,
+    overrideConfigFile: options.config || undefined,
+    ignore: !options.noIgnore,
+  })
+}
+
 export async function runESLintCommand(ids: string | string[], ctx: OxlintContext) {
   const options = ctx.options
   const paths = normalizeAbsolutePath(ids, options.path || ['.'])
 
-  const eslint = await createESLint({ fix: options.fix })
+  const eslint = await createESLint(resolveESLintOptions(ctx))
   const results = await eslint.lintFiles(paths)
 
   if (options.fix)
     await ESLint.outputFixes(results)
+  if (options.quiet)
+    return
 
   const formatter = await eslint.loadFormatter('stylish')
-  const resultText = formatter.format(results)
+  const resultText = await formatter.format(results)
 
   process.stdout.write(resultText)
 }
