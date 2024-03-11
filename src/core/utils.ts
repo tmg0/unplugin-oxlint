@@ -2,6 +2,7 @@ import { isAbsolute, join } from 'node:path'
 import process from 'node:process'
 import { hash } from 'ohash'
 import fse from 'fs-extra'
+import ESLintNext from 'eslint/use-at-your-own-risk'
 
 export function until(value: () => any, truthyValue: any = true, ms: number = 500): Promise<void> {
   return new Promise((resolve) => {
@@ -40,4 +41,19 @@ export function normalizeAbsolutePath(ids: string | string[], defaults: string |
 export function generateFileHash(id: string) {
   const [path] = normalizeAbsolutePath(id, [])
   return hash(fse.readFileSync(path))
+}
+
+export function isDirectory(id: string) {
+  const stats = fse.statSync(id)
+
+  if (stats.isDirectory())
+    return true
+  return false
+}
+
+export async function createESLint() {
+  const isFlat = await ESLintNext.shouldUseFlatConfig()
+  if (isFlat)
+    return new ESLintNext.FlatESLint()
+  return new ESLintNext.LegacyESLint()
 }

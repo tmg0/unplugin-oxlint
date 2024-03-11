@@ -71,7 +71,7 @@
   ],
   "scripts": {
     "dev": "vitest dev",
-    "build": "tsup",
+    "build": "tsup-node",
     "play:tsup": "cd playground/tsup && pnpm dev",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
