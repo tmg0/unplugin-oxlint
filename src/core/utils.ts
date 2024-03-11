@@ -2,8 +2,7 @@ import { isAbsolute, join } from 'node:path'
 import process from 'node:process'
 import { hash } from 'ohash'
 import fse from 'fs-extra'
-import FlatESLint from 'eslint/use-at-your-own-risk'
-import type { ESLint } from 'eslint'
+import ESLintNext from 'eslint/use-at-your-own-risk'
 
 export function until(value: () => any, truthyValue: any = true, ms: number = 500): Promise<void> {
   return new Promise((resolve) => {
@@ -52,9 +51,9 @@ export function isDirectory(id: string) {
   return false
 }
 
-export async function createEslint(overrideConfig: any) {
-  return new (FlatESLint as any).FlatESLint(overrideConfig) as ESLint
-  // if ((await (ESLint as any).shouldUseFlatConfig()))
-  //   return new (ESLint as any).FlatESLint()
-  // return (ESLint as any).LegacyESLint()
+export async function createESLint() {
+  const isFlat = await ESLintNext.shouldUseFlatConfig()
+  if (isFlat)
+    return new ESLintNext.FlatESLint()
+  return new ESLintNext.LegacyESLint()
 }
