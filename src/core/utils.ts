@@ -3,6 +3,7 @@ import process from 'node:process'
 import { hash } from 'ohash'
 import fse from 'fs-extra'
 import ESLintNext from 'eslint/use-at-your-own-risk'
+import type { CreateESLintOptions } from './types'
 
 export function until(value: () => any, truthyValue: any = true, ms: number = 500): Promise<void> {
   return new Promise((resolve) => {
@@ -51,9 +52,9 @@ export function isDirectory(id: string) {
   return false
 }
 
-export async function createESLint() {
+export async function createESLint(options: Partial<CreateESLintOptions> = {}) {
   const isFlat = await ESLintNext.shouldUseFlatConfig()
-  if (isFlat)
-    return new ESLintNext.FlatESLint()
-  return new ESLintNext.LegacyESLint()
+  if (!isFlat)
+    return new ESLintNext.LegacyESLint(options)
+  return new ESLintNext.FlatESLint(options)
 }

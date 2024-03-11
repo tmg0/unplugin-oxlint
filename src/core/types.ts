@@ -34,3 +34,7 @@ export interface OxlintContext {
   getFileHash: (id: string) => string
   setFileHash: (id: string, hash: string) => void
 }
+
+export interface CreateESLintOptions {
+  fix: boolean
+}

@@ -2,6 +2,7 @@ import process from 'node:process'
 import { join, normalize } from 'node:path'
 import { execa } from 'execa'
 import fse from 'fs-extra'
+import { ESLint } from 'eslint'
 import type { NpxCommand, OxlintContext } from './types'
 import { createESLint, normalizeAbsolutePath } from './utils'
 
@@ -60,12 +61,16 @@ export async function doesDependencyExist(name: string) {
   return false
 }
 
-export async function runEslintCommand(ids: string | string[], ctx: OxlintContext) {
+export async function runESLintCommand(ids: string | string[], ctx: OxlintContext) {
   const options = ctx.options
   const paths = normalizeAbsolutePath(ids, options.path || ['.'])
 
-  const eslint = await createESLint()
+  const eslint = await createESLint({ fix: options.fix })
   const results = await eslint.lintFiles(paths)
+
+  if (options.fix)
+    await ESLint.outputFixes(results)
+
   const formatter = await eslint.loadFormatter('stylish')
   const resultText = formatter.format(results)
 
@@ -77,7 +82,7 @@ export async function runLintCommand(ids: string | string[], ctx: OxlintContext)
   const hasEslint = await doesDependencyExist('eslint')
   await Promise.all([
     runOxlintCommand(ids, ctx),
-    hasEslint ? runEslintCommand(ids, ctx) : undefined,
+    hasEslint ? runESLintCommand(ids, ctx) : undefined,
   ].map(Boolean))
   ctx.setHoldingStatus(false)
 }
