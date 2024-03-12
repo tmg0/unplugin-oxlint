@@ -5,7 +5,6 @@ import fse from 'fs-extra'
 import { ESLint } from 'eslint'
 import { defu } from 'defu'
 import { destr } from 'destr'
-import oxlint from 'eslint-plugin-oxlint'
 import type { NpxCommand, OxlintContext, OxlintOutput } from './types'
 import { createESLint, normalizeAbsolutePath } from './utils'
 
@@ -91,14 +90,6 @@ export async function runESLintCommand(ids: string | string[], ctx: OxlintContex
 
   const eslint = await createESLint(resolveESLintOptions(ctx))
   const results = await eslint.lintFiles(paths)
-
-  results.forEach((result, index) => {
-    if (result && Array.isArray(result.messages)) {
-      const { messages } = result
-      const ignoreRules = Object.keys(oxlint.configs['flat/recommended'].rules)
-      results[index].messages = messages.filter(({ ruleId }) => !ignoreRules.includes(ruleId ?? ''))
-    }
-  })
 
   if (options.fix)
     await ESLint.outputFixes(results)
