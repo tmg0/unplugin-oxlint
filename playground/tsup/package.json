@@ -1,7 +1,7 @@
 {
   "name": "@unplugin-oxlint/tsup",
   "scripts": {
-    "dev": "tsup-node"
+    "dev": "tsup-node --watch"
   },
   "devDependencies": {
     "eslint": "^8.57.0",

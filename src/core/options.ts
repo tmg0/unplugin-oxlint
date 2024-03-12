@@ -1,4 +1,5 @@
 import { defu } from 'defu'
+import { isDevelopment } from 'std-env'
 import type { OxlintOptions } from './types'
 
 const DEFAULT_OXLINT_OPTIONS: Partial<OxlintOptions> = {
@@ -11,7 +12,7 @@ const DEFAULT_OXLINT_OPTIONS: Partial<OxlintOptions> = {
   noIgnore: false,
   quiet: false,
   denyWarnings: false,
-  watch: false,
+  watch: isDevelopment,
   includes: [/\.[jt]sx?$/, /\.vue$/, /\.vue\?vue/, /\.svelte$/],
   excludes: [/[\\/]node_modules[\\/]/, /[\\/]\.git[\\/]/],
 }
