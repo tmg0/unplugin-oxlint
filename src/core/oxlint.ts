@@ -90,10 +90,10 @@ export async function runESLintCommand(ids: string | string[], ctx: OxlintContex
 
 export async function runLintCommand(ids: string | string[], ctx: OxlintContext) {
   ctx.setHoldingStatus(true)
-  const hasEslint = await doesDependencyExist('eslint')
+  const hasESLint = await doesDependencyExist('eslint')
   await Promise.all([
     runOxlintCommand(ids, ctx),
-    hasEslint ? runESLintCommand(ids, ctx) : undefined,
+    hasESLint ? runESLintCommand(ids, ctx) : undefined,
   ].map(Boolean))
   ctx.setHoldingStatus(false)
 }

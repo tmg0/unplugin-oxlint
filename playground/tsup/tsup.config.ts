@@ -1,5 +1,5 @@
 import { defineConfig } from 'tsup'
-import Oxlint from 'unplugin-oxlint/esbuild'
+import Oxlint from '../../src/esbuild'
 
 export default defineConfig({
   entry: ['src/index.ts'],

@@ -66,9 +66,6 @@ importers:
       tsup:
         specifier: ^8.0.2
         version: 8.0.2(typescript@5.4.2)
-      unplugin-oxlint:
-        specifier: link:..\..
-        version: link:../..
 
 packages:
 
