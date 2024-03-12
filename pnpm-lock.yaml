@@ -17,6 +17,9 @@ importers:
       eslint:
         specifier: ^8.57.0
         version: 8.57.0
+      eslint-plugin-oxlint:
+        specifier: ^0.2.4
+        version: 0.2.4
       execa:
         specifier: ^8.0.1
         version: 8.0.1
@@ -2012,6 +2015,10 @@ packages:
     resolution: {integrity: sha512-Lf4YW/bL6Un1R6A76pRZyE1dl1vr31G/ev8UzIc/geCgFWyrKil8hVjYqWVKGB/UIGmb6Slzs9T0wNezdSVegw==}
     engines: {node: '>=5.0.0'}
     dev: true
+
+  /eslint-plugin-oxlint@0.2.4:
+    resolution: {integrity: sha512-NW5pV1br33T2Zc51QY5iLdcY2d2M607msjD/VO+0NrIsNarJFEafPyxtE3oA2o1B4N5Tcv5A9E6C+oeeoYQ2dg==}
+    dev: false
 
   /eslint-plugin-perfectionist@2.6.0(eslint@8.57.0)(typescript@5.4.2)(vue-eslint-parser@9.4.2):
     resolution: {integrity: sha512-hee0Fu5825v+WTIhrRIJdWO8biUgm9O+c4Q1AEXIIGsXDHrLv5cdXfVUdnQcYgGtI/4X+tdFu69iVofHCIkvtw==}

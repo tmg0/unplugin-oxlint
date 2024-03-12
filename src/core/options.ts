@@ -11,6 +11,7 @@ const DEFAULT_OXLINT_OPTIONS: Partial<OxlintOptions> = {
   noIgnore: false,
   quiet: false,
   denyWarnings: false,
+  watch: false,
   includes: [/\.[jt]sx?$/, /\.vue$/, /\.vue\?vue/, /\.svelte$/],
   excludes: [/[\\/]node_modules[\\/]/, /[\\/]\.git[\\/]/],
 }

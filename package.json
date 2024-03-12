@@ -84,6 +84,7 @@
     "chokidar": "^3.6.0",
     "defu": "^6.1.4",
     "eslint": "^8.57.0",
+    "eslint-plugin-oxlint": "^0.2.4",
     "execa": "^8.0.1",
     "fs-extra": "^11.2.0",
     "nypm": "^0.3.8",
