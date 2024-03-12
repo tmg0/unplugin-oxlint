@@ -35,6 +35,23 @@ export interface OxlintContext {
   setHoldingStatus: (value: boolean) => void
   getFileHash: (id: string) => string
   setFileHash: (id: string, hash: string) => void
+  setLintResults: (filename: string, result: Omit<LintResult, 'filename'>) => void
+  outputLintResults: () => void
 }
 
 export type CreateESLintOptions = ESLint.Options
+
+export interface OxlintOutput {
+  message: string
+  severity: 'warning' | 'error'
+  causes: string[]
+  filename: string
+  related: string[]
+}
+
+export interface LintResult {
+  filename: string
+  severity: 'warning' | 'error'
+  message: string
+  linter: 'oxlint' | 'eslint'
+}

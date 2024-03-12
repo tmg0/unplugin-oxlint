@@ -82,7 +82,9 @@
   },
   "dependencies": {
     "chokidar": "^3.6.0",
+    "consola": "^3.2.3",
     "defu": "^6.1.4",
+    "destr": "^2.0.3",
     "eslint": "^8.57.0",
     "eslint-plugin-oxlint": "^0.2.4",
     "execa": "^8.0.1",

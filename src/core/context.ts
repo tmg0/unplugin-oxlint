@@ -1,7 +1,10 @@
 import process from 'node:process'
+import { relative } from 'node:path'
 import { detectPackageManager } from 'nypm'
+import { consola } from 'consola'
+import { colors } from 'consola/utils'
 import { version } from '../../package.json'
-import type { OxlintContext, OxlintOptions, PackageManagerName } from './types'
+import type { LintResult, OxlintContext, OxlintOptions, PackageManagerName } from './types'
 import { runLintCommand } from './oxlint'
 
 export function createOxlint(options: OxlintOptions) {
@@ -30,6 +33,7 @@ function createInternalContext(options: OxlintOptions): OxlintContext {
   let packageManagerName: PackageManagerName | undefined = options.packageManager
 
   const fileHashRecord: Record<string, string> = {}
+  const lintResultRecord: Record<string, LintResult[]> = {}
 
   async function getPackageManager() {
     if (!packageManagerName) {
@@ -55,6 +59,28 @@ function createInternalContext(options: OxlintOptions): OxlintContext {
     fileHashRecord[id] = hash
   }
 
+  function setLintResults(filename: string, result: Omit<LintResult, 'filename'>) {
+    filename = relative(process.cwd(), filename)
+    if (!lintResultRecord[filename])
+      lintResultRecord[filename] = []
+    lintResultRecord[filename].push({ ...result, filename })
+  }
+
+  function outputLintResults() {
+    process.stdout.write('\r\n\r\n')
+    Object.entries(lintResultRecord).forEach(([filename, results]) => {
+      consola.warn(`[unplugin-oxlint]: ${colors.blue(filename)}`)
+      results.forEach(({ message, severity, linter }) => {
+        message += '\n'
+        const prefix = `       ${colors.gray(`[${linter}] `)}`
+        if (severity === 'error')
+          process.stdout.write(prefix + colors.red(message))
+        process.stdout.write(prefix + colors.yellow(message))
+      })
+    })
+    process.stdout.write('\r\n\r\n')
+  }
+
   return {
     version,
     options,
@@ -64,5 +90,7 @@ function createInternalContext(options: OxlintOptions): OxlintContext {
     setHoldingStatus,
     getFileHash,
     setFileHash,
+    setLintResults,
+    outputLintResults,
   }
 }

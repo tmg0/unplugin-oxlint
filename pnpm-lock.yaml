@@ -11,9 +11,15 @@ importers:
       chokidar:
         specifier: ^3.6.0
         version: 3.6.0
+      consola:
+        specifier: ^3.2.3
+        version: 3.2.3
       defu:
         specifier: ^6.1.4
         version: 6.1.4
+      destr:
+        specifier: ^2.0.3
+        version: 2.0.3
       eslint:
         specifier: ^8.57.0
         version: 8.57.0
@@ -1697,6 +1703,10 @@ packages:
 
   /defu@6.1.4:
     resolution: {integrity: sha512-mEQCMmwJu317oSz8CwdIOdwf3xMif1ttiM8LTufzc3g6kR+9Pe236twL8j3IYT1F7GfRgGcW6MWxzZjLIkuHIg==}
+    dev: false
+
+  /destr@2.0.3:
+    resolution: {integrity: sha512-2N3BOUU4gYMpTP24s5rF5iP7BDr7uNTCs4ozw3kf/eKfvWSIu93GEBi5m427YoyJoeOzQ5smuu4nNAPGb8idSQ==}
     dev: false
 
   /diff-sequences@29.6.3:
