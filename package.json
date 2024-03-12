@@ -73,8 +73,8 @@
     "dev": "vitest dev",
     "build": "tsup-node",
     "play:tsup": "cd playground/tsup && pnpm dev",
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
+    "lint": "eslint src",
+    "lint:fix": "eslint src --fix",
     "test": "vitest"
   },
   "peerDependencies": {

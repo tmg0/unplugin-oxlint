@@ -1,5 +1,5 @@
 import process from 'node:process'
-import { join, normalize, relative } from 'node:path'
+import { join, normalize } from 'node:path'
 import { execa } from 'execa'
 import fse from 'fs-extra'
 import { ESLint } from 'eslint'
