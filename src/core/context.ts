@@ -31,9 +31,9 @@ export function createOxlint(options: OxlintOptions) {
 function createInternalContext(options: OxlintOptions): OxlintContext {
   let isHolding = true
   let packageManagerName: PackageManagerName | undefined = options.packageManager
+  let lintResultRecord: Record<string, LintResult[]> = {}
 
   const fileHashRecord: Record<string, string> = {}
-  const lintResultRecord: Record<string, LintResult[]> = {}
 
   async function getPackageManager() {
     if (!packageManagerName) {
@@ -67,7 +67,10 @@ function createInternalContext(options: OxlintOptions): OxlintContext {
   }
 
   function outputLintResults() {
-    process.stdout.write('\r\n\r\n')
+    if (!Object.keys(lintResultRecord ?? {})?.length)
+      return
+
+    process.stdout.write('\r\n')
     Object.entries(lintResultRecord).forEach(([filename, results]) => {
       consola.warn(`[unplugin-oxlint]: ${colors.blue(filename)}`)
       results.forEach(({ message, severity, linter }) => {
@@ -79,6 +82,8 @@ function createInternalContext(options: OxlintOptions): OxlintContext {
       })
     })
     process.stdout.write('\r\n\r\n')
+
+    lintResultRecord = {}
   }
 
   return {
