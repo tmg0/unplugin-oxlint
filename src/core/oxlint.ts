@@ -57,9 +57,11 @@ export async function runOxlintCommand(ids: string | string[], ctx: OxlintContex
 
   const outputs = destr<OxlintOutput[]>(format(stdout))
 
-  outputs.forEach(({ filename, severity, message }) => {
-    ctx.setLintResults(filename, { linter: 'oxlint', severity, message })
-  })
+  if (Array.isArray(outputs)) {
+    outputs.forEach(({ filename, severity, message }) => {
+      ctx.setLintResults(filename, { linter: 'oxlint', severity, message })
+    })
+  }
 }
 
 export async function doesDependencyExist(name: string) {
