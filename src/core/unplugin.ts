@@ -13,20 +13,22 @@ export const unplugin = createUnplugin<Partial<OxlintOptions> | undefined>((rawO
 
   ctx.setup()
 
-  const watcher = chokidar.watch([options.path].flat().map(path => join(process.cwd(), path)), {
-    ignored: id => normalizeIgnores(options.excludes).some(regex => regex.test(id)),
-    persistent: true,
-  })
+  if (options.watch) {
+    const watcher = chokidar.watch([options.path].flat().map(path => join(process.cwd(), path)), {
+      ignored: id => normalizeIgnores(options.excludes).some(regex => regex.test(id)),
+      persistent: true,
+    })
 
-  watcher.on('change', (id) => {
-    if (ctx.getHoldingStatus())
-      return
-    const hash = generateFileHash(id)
-    if (hash === ctx.getFileHash(id))
-      return
-    ctx.runLintCommand(id)
-    ctx.setFileHash(id, hash)
-  })
+    watcher.on('change', (id) => {
+      if (ctx.getHoldingStatus())
+        return
+      const hash = generateFileHash(id)
+      if (hash === ctx.getFileHash(id))
+        return
+      ctx.runLintCommand(id)
+      ctx.setFileHash(id, hash)
+    })
+  }
 
   return {
     name: 'oxlint',

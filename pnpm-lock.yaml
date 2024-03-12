@@ -17,6 +17,9 @@ importers:
       eslint:
         specifier: ^8.57.0
         version: 8.57.0
+      eslint-plugin-oxlint:
+        specifier: ^0.2.4
+        version: 0.2.4
       execa:
         specifier: ^8.0.1
         version: 8.0.1
@@ -29,6 +32,9 @@ importers:
       ohash:
         specifier: ^1.1.3
         version: 1.1.3
+      std-env:
+        specifier: ^3.7.0
+        version: 3.7.0
       unplugin:
         specifier: ^1.9.0
         version: 1.9.0
@@ -2013,6 +2019,10 @@ packages:
     engines: {node: '>=5.0.0'}
     dev: true
 
+  /eslint-plugin-oxlint@0.2.4:
+    resolution: {integrity: sha512-NW5pV1br33T2Zc51QY5iLdcY2d2M607msjD/VO+0NrIsNarJFEafPyxtE3oA2o1B4N5Tcv5A9E6C+oeeoYQ2dg==}
+    dev: false
+
   /eslint-plugin-perfectionist@2.6.0(eslint@8.57.0)(typescript@5.4.2)(vue-eslint-parser@9.4.2):
     resolution: {integrity: sha512-hee0Fu5825v+WTIhrRIJdWO8biUgm9O+c4Q1AEXIIGsXDHrLv5cdXfVUdnQcYgGtI/4X+tdFu69iVofHCIkvtw==}
     peerDependencies:
@@ -3423,7 +3433,6 @@ packages:
 
   /std-env@3.7.0:
     resolution: {integrity: sha512-JPbdCEQLj1w5GilpiHAx3qJvFndqybBysA3qUOnznweH4QbNYUsW/ea8QzSrnh0vNsezMMw5bcVool8lM0gwzg==}
-    dev: true
 
   /string-width@4.2.3:
     resolution: {integrity: sha512-wKyQRQpjJ0sIp62ErSZdGsjMJWsap5oRNihHhu6G7JVO/9jIB6UyevL+tXuOqrng8j/cxKTWyWUwvSTriiZz/g==}

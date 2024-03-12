@@ -106,6 +106,13 @@ Single file, single path or list of paths
 
 Fix as many issues as possible. Only unfixed issues are reported in the output
 
+### `options.watch`
+
+- Type: `boolean`
+- Default: `false`
+
+Continue to watch for changes in any of the resolved path
+
 ### `options.includes`
 
 - Type: `string[] | RegExp[]`

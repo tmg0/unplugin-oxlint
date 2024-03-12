@@ -13,6 +13,7 @@ export interface OxlintOptions {
   noIgnore: boolean
   quiet: boolean
   denyWarnings: boolean
+  watch: boolean
   packageManager?: PackageManagerName | undefined
 }
 
