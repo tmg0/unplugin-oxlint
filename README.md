@@ -178,6 +178,20 @@ pnpm add -D eslint eslint-plugin-oxlint
 yarn add -D eslint eslint-plugin-oxlint
 ```
 
+### Example
+
+Use [eslint-plugin-oxlint](https://github.com/oxc-project/eslint-plugin-oxlint) with [@antfu/eslint-config](https://github.com/antfu/eslint-config)
+
+```js
+// eslint.config.js
+import antfu from '@antfu/eslint-config'
+import oxlint from 'eslint-plugin-oxlint'
+
+export default antfu({
+  ...oxlint.configs['flat/recommended'],
+})
+```
+
 ## License
 
 [MIT](./LICENSE) License © 2024-PRESENT [Tamago](https://github.com/tmg0)
