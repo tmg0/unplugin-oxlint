@@ -77,9 +77,9 @@ function createInternalContext(options: OxlintOptions): OxlintContext {
         const tag = linter === 'oxlint' ? [linter, 'eslint'].join('-') : linter
         const suffix = ` (${colors.gray(tag)}: ${colors.blue(ruleId)})\n`
         if (severity === 'error')
-          process.stdout.write(`        ${colors.red('✘')} ${colors.red(message)}${suffix}`)
+          process.stdout.write(`       ${colors.red('✘')} ${colors.red(message)}${suffix}`)
         if (severity === 'warning')
-          process.stdout.write(`        ${colors.yellow('⚠')} ${colors.yellow(message)}${suffix}`)
+          process.stdout.write(`       ${colors.yellow('⚠')} ${colors.yellow(message)}${suffix}`)
       })
     })
     process.stdout.write('\r\n\r\n')
