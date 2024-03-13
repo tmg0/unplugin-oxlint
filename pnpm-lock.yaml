@@ -75,6 +75,9 @@ importers:
       eslint:
         specifier: ^8.57.0
         version: 8.57.0
+      oxlint:
+        specifier: ^0.2.13
+        version: 0.2.13
       tsup:
         specifier: ^8.0.2
         version: 8.0.2(typescript@5.4.2)
@@ -91,6 +94,9 @@ importers:
       eslint:
         specifier: ^8.57.0
         version: 8.57.0
+      oxlint:
+        specifier: ^0.2.13
+        version: 0.2.13
       typescript:
         specifier: ^5.2.2
         version: 5.4.2
