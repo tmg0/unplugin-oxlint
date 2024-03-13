@@ -1,7 +1,5 @@
 import process from 'node:process'
-import { join, normalize } from 'node:path'
 import { execa } from 'execa'
-import fse from 'fs-extra'
 import { ESLint } from 'eslint'
 import { defu } from 'defu'
 import oxlint from 'eslint-plugin-oxlint'
@@ -50,19 +48,6 @@ export async function runOxlintCommand(ids: string | string[], ctx: OxlintContex
   ], ctx)
 }
 
-export async function doesDependencyExist(name: string) {
-  const segments = normalize(process.cwd()).split('/')
-  const path = join(segments.join('/') || '/', 'package.json')
-  if (fse.pathExistsSync(path)) {
-    const packageJSON = (await fse.readJSON(path))
-    if (Object.keys(packageJSON.dependencies ?? {}).includes(name))
-      return true
-    if (Object.keys(packageJSON.devDependencies ?? {}).includes(name))
-      return true
-  }
-  return false
-}
-
 function resolveESLintOptions({ options }: OxlintContext): ESLint.Options {
   return defu({}, {
     fix: options.fix,
@@ -99,10 +84,9 @@ export async function runESLintCommand(ids: string | string[], ctx: OxlintContex
 
 export async function runLintCommand(ids: string | string[], ctx: OxlintContext) {
   ctx.setHoldingStatus(true)
-  const hasESLint = await doesDependencyExist('eslint')
   await Promise.all([
-    runOxlintCommand(ids, ctx),
-    hasESLint ? runESLintCommand(ids, ctx) : undefined,
+    ctx.isExist('oxlint') ? runOxlintCommand(ids, ctx) : undefined,
+    ctx.isExist('eslint') ? runESLintCommand(ids, ctx) : undefined,
   ].map(Boolean))
   ctx.setHoldingStatus(false)
 }
