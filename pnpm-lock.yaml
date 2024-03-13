@@ -11,15 +11,18 @@ importers:
       chokidar:
         specifier: ^3.6.0
         version: 3.6.0
+      consola:
+        specifier: ^3.2.3
+        version: 3.2.3
       defu:
         specifier: ^6.1.4
         version: 6.1.4
+      destr:
+        specifier: ^2.0.3
+        version: 2.0.3
       eslint:
         specifier: ^8.57.0
         version: 8.57.0
-      eslint-plugin-oxlint:
-        specifier: ^0.2.4
-        version: 0.2.4
       execa:
         specifier: ^8.0.1
         version: 8.0.1
@@ -51,6 +54,9 @@ importers:
       esbuild:
         specifier: ^0.20.1
         version: 0.20.1
+      eslint-plugin-oxlint:
+        specifier: ^0.2.4
+        version: 0.2.4
       oxlint:
         specifier: ^0.2.13
         version: 0.2.13
@@ -1699,6 +1705,10 @@ packages:
     resolution: {integrity: sha512-mEQCMmwJu317oSz8CwdIOdwf3xMif1ttiM8LTufzc3g6kR+9Pe236twL8j3IYT1F7GfRgGcW6MWxzZjLIkuHIg==}
     dev: false
 
+  /destr@2.0.3:
+    resolution: {integrity: sha512-2N3BOUU4gYMpTP24s5rF5iP7BDr7uNTCs4ozw3kf/eKfvWSIu93GEBi5m427YoyJoeOzQ5smuu4nNAPGb8idSQ==}
+    dev: false
+
   /diff-sequences@29.6.3:
     resolution: {integrity: sha512-EjePK1srD3P08o2j4f0ExnylqRs5B9tJjcp9t1krH2qRi8CCdsYfwe9JgSLurFBWwq4uOlipzfk5fHNvwFKr8Q==}
     engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
@@ -2021,7 +2031,7 @@ packages:
 
   /eslint-plugin-oxlint@0.2.4:
     resolution: {integrity: sha512-NW5pV1br33T2Zc51QY5iLdcY2d2M607msjD/VO+0NrIsNarJFEafPyxtE3oA2o1B4N5Tcv5A9E6C+oeeoYQ2dg==}
-    dev: false
+    dev: true
 
   /eslint-plugin-perfectionist@2.6.0(eslint@8.57.0)(typescript@5.4.2)(vue-eslint-parser@9.4.2):
     resolution: {integrity: sha512-hee0Fu5825v+WTIhrRIJdWO8biUgm9O+c4Q1AEXIIGsXDHrLv5cdXfVUdnQcYgGtI/4X+tdFu69iVofHCIkvtw==}
