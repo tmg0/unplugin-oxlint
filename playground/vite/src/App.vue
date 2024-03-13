@@ -14,8 +14,6 @@ const msg = ref('Vite + Vue')
       alt="Vite logo" />
     </a>
   </div>
-  <div>{{msg }}
-    </div>
 </template>
 
 <style scoped>
