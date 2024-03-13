@@ -87,6 +87,6 @@ export async function runLintCommand(ids: string | string[], ctx: OxlintContext)
   await Promise.all([
     ctx.isExist('oxlint') ? runOxlintCommand(ids, ctx) : undefined,
     ctx.isExist('eslint') ? runESLintCommand(ids, ctx) : undefined,
-  ].map(Boolean))
+  ].filter(Boolean))
   ctx.setHoldingStatus(false)
 }
