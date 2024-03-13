@@ -1,8 +1,9 @@
 import process from 'node:process'
-import { relative } from 'node:path'
+import { join, normalize, relative } from 'node:path'
 import { detectPackageManager } from 'nypm'
 import { consola } from 'consola'
 import { colors } from 'consola/utils'
+import fse from 'fs-extra'
 import { version } from '../../package.json'
 import type { LintResult, OxlintContext, OxlintOptions, PackageManagerName } from './types'
 import { runLintCommand } from './oxlint'
@@ -10,7 +11,8 @@ import { runLintCommand } from './oxlint'
 export function createOxlint(options: OxlintOptions) {
   const ctx = createInternalContext(options)
 
-  function runLintCommandWithContext(ids: string | string[]) {
+  async function runLintCommandWithContext(ids: string | string[]) {
+    await ctx.detectDependencies()
     return ctx.runLintCommand(ids, ctx)
   }
 
@@ -30,6 +32,8 @@ export function createOxlint(options: OxlintOptions) {
 
 function createInternalContext(options: OxlintOptions): OxlintContext {
   let isHolding = true
+  let hasESLint: boolean | null = null
+  let hasOxlint: boolean | null = null
   let packageManagerName: PackageManagerName | undefined = options.packageManager
   let lintResultRecord: Record<string, LintResult[]> = {}
 
@@ -87,6 +91,25 @@ function createInternalContext(options: OxlintOptions): OxlintContext {
     lintResultRecord = {}
   }
 
+  async function detectDependencies() {
+    if ([hasOxlint, hasESLint].includes(null)) {
+      const exists = await Promise.all([
+        doesDependencyExist('oxlint'),
+        doesDependencyExist('eslint'),
+      ])
+      hasOxlint = exists[0]
+      hasESLint = exists[1]
+    }
+  }
+
+  function isExist(dep: 'oxlint' | 'eslint') {
+    if (dep === 'oxlint')
+      return hasOxlint ?? false
+    if (dep === 'eslint')
+      return hasESLint ?? false
+    return false
+  }
+
   return {
     version,
     options,
@@ -98,5 +121,20 @@ function createInternalContext(options: OxlintOptions): OxlintContext {
     setFileHash,
     setLintResults,
     outputLintResults,
+    detectDependencies,
+    isExist,
   }
+}
+
+async function doesDependencyExist(name: string) {
+  const segments = normalize(process.cwd()).split('/')
+  const path = join(segments.join('/') || '/', 'package.json')
+  if (fse.pathExistsSync(path)) {
+    const packageJSON = (await fse.readJSON(path))
+    if (Object.keys(packageJSON.dependencies ?? {}).includes(name))
+      return true
+    if (Object.keys(packageJSON.devDependencies ?? {}).includes(name))
+      return true
+  }
+  return false
 }

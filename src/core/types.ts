@@ -37,6 +37,8 @@ export interface OxlintContext {
   setFileHash: (id: string, hash: string) => void
   setLintResults: (filename: string, result: Omit<LintResult, 'filename'>) => void
   outputLintResults: () => void
+  detectDependencies: () => Promise<void>
+  isExist: (dep: 'oxlint' | 'eslint') => boolean
 }
 
 export type CreateESLintOptions = ESLint.Options
