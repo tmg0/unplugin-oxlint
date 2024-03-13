@@ -7,6 +7,7 @@ import { defu } from 'defu'
 import { destr } from 'destr'
 import type { NpxCommand, OxlintContext, OxlintOutput } from './types'
 import { createESLint, normalizeAbsolutePath } from './utils'
+import { oxlintRE } from './regexp'
 
 const agents = {
   bun: ['bunx'],
@@ -29,6 +30,28 @@ async function runNpxCommand(command: NpxCommand, args: string[], ctx: OxlintCon
       reject: false,
     },
   )
+}
+
+function detectOxlintMessage(message: string) {
+  let ruleId = ''
+  let content = message
+  let plugin = ''
+
+  const match = oxlintRE.exec(message)
+
+  if (match) {
+    plugin = match[1]
+    ruleId = match[2]
+    content = match[3]
+  }
+
+  oxlintRE.lastIndex = 0
+
+  return {
+    ruleId,
+    content,
+    plugin,
+  }
 }
 
 export async function runOxlintCommand(ids: string | string[], ctx: OxlintContext) {
@@ -58,7 +81,13 @@ export async function runOxlintCommand(ids: string | string[], ctx: OxlintContex
 
   if (Array.isArray(outputs)) {
     outputs.forEach(({ filename, severity, message }) => {
-      ctx.setLintResults(filename, { linter: 'oxlint', severity, message })
+      const { ruleId, content } = detectOxlintMessage(message)
+      ctx.setLintResults(filename, {
+        linter: 'oxlint',
+        severity,
+        message: content,
+        ruleId,
+      })
     })
   }
 }
@@ -97,8 +126,14 @@ export async function runESLintCommand(ids: string | string[], ctx: OxlintContex
     return
 
   results.forEach(({ filePath: filename, messages }) => {
-    messages.forEach(({ message }) => {
-      ctx.setLintResults(filename, { linter: 'eslint', severity: 'warning', message })
+    messages.forEach(({ message, severity, ruleId }) => {
+      const ESLINT_SEVERITY = ['off', 'warning', 'error']
+      ctx.setLintResults(filename, {
+        linter: 'eslint',
+        severity: ESLINT_SEVERITY[severity] as any,
+        ruleId: ruleId ?? '',
+        message,
+      })
     })
   })
 }

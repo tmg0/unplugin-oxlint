@@ -51,7 +51,8 @@ export interface OxlintOutput {
 
 export interface LintResult {
   filename: string
-  severity: 'warning' | 'error'
+  severity: 'off' | 'warning' | 'error'
   message: string
   linter: 'oxlint' | 'eslint'
+  ruleId: string
 }
