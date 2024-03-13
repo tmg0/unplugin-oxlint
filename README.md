@@ -10,9 +10,11 @@
 
 🔍 Support using ESLint with oxlint; automatically run lint actions after oxlint.
 
-🛠️ Run the lint check before bundling and after the file changes using [chokidar](https://github.com/paulmillr/chokidar).
+😊 Friendly output in terminal, grouped by filepath.
 
-⚡ Only lint the files that have changed for better performance.
+🛠️ Run the global lint before bundling.
+
+⚡ Only lint the files that have changed for better performance using [chokidar](https://github.com/paulmillr/chokidar).
 
 🚀 The transformation process will only be blocked during the initial compilation.
 
@@ -86,6 +88,43 @@ module.exports = {
 
 <br></details>
 
+## Playground
+
+See [playground]('./playground').
+
+## Eslint
+
+If you are looking for a way to use oxlint in projects that still need ESLint, You can use [eslint-plugin-oxlint](https://github.com/oxc-project/eslint-plugin-oxlint) to turn off ESLint rules that are already supported by oxlint.
+
+The rules are extracted from [here](https://github.com/oxc-project/eslint-plugin-oxlint?tab=readme-ov-file)
+
+`unplugin-oxlint` will automatically run the `eslint` script after `oxlint` when build start and file change.
+
+```bash
+# npm
+npm i -D eslint eslint-plugin-oxlint
+
+# pnpm
+pnpm add -D eslint eslint-plugin-oxlint
+
+# yar
+yarn add -D eslint eslint-plugin-oxlint
+```
+
+### Example
+
+Use [eslint-plugin-oxlint](https://github.com/oxc-project/eslint-plugin-oxlint) with [@antfu/eslint-config](https://github.com/antfu/eslint-config)
+
+```js
+// eslint.config.js
+import antfu from '@antfu/eslint-config'
+import oxlint from 'eslint-plugin-oxlint'
+
+export default antfu({
+  ...oxlint.configs['flat/recommended'],
+})
+```
+
 ## Options
 
 For all options please refer to [docs](https://github.com/52-entertainment/vite-plugin-oxlint).
@@ -158,43 +197,6 @@ Ensure warnings produce a non-zero exit code
 Declare the package manager which you want to use
 
 Normally you don't need to modify this option. `unplugin-oxlint` will automatically detect `package.json` and lock file by [nypm](https://github.com/unjs/nypm)
-
-## Eslint
-
-If you are looking for a way to use oxlint in projects that still need ESLint, You can use [eslint-plugin-oxlint](https://github.com/oxc-project/eslint-plugin-oxlint) to turn off ESLint rules that are already supported by oxlint.
-
-The rules are extracted from [here](https://github.com/oxc-project/eslint-plugin-oxlint?tab=readme-ov-file)
-
-`unplugin-oxlint` will automatically run the `eslint` script after `oxlint` when build start and file change.
-
-```bash
-# npm
-npm i -D eslint eslint-plugin-oxlint
-
-# pnpm
-pnpm add -D eslint eslint-plugin-oxlint
-
-# yar
-yarn add -D eslint eslint-plugin-oxlint
-```
-
-### Example
-
-Use [eslint-plugin-oxlint](https://github.com/oxc-project/eslint-plugin-oxlint) with [@antfu/eslint-config](https://github.com/antfu/eslint-config)
-
-```js
-// eslint.config.js
-import antfu from '@antfu/eslint-config'
-import oxlint from 'eslint-plugin-oxlint'
-
-export default antfu({
-  ...oxlint.configs['flat/recommended'],
-})
-```
-
-## Playground
-
-See [playground]('./playground').
 
 ## License
 
