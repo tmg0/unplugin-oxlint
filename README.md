@@ -192,6 +192,10 @@ export default antfu({
 })
 ```
 
+## Playground
+
+See [playground]('./playground').
+
 ## License
 
 [MIT](./LICENSE) License © 2024-PRESENT [Tamago](https://github.com/tmg0)
