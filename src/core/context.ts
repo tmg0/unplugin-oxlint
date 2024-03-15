@@ -7,8 +7,10 @@ import fse from 'fs-extra'
 import { version } from '../../package.json'
 import type { LintResult, OxlintContext, OxlintOptions, PackageManagerName } from './types'
 import { runLintCommand } from './oxlint'
+import { resolveOptions } from './options'
 
-export function createOxlint(options: OxlintOptions) {
+export function createOxlint(rawOptions: Partial<OxlintOptions> = {}) {
+  const options = resolveOptions(rawOptions)
   const ctx = createInternalContext(options)
 
   async function runLintCommandWithContext(ids: string | string[]) {
