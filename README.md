@@ -10,7 +10,7 @@
 
 🔍 Support using ESLint with oxlint; automatically run lint actions after oxlint.
 
-😊 Friendly output in terminal, grouped by filepath.
+😊 Friendly output in terminal, grouped by filepath. Support includes lint target files by glob.
 
 🛠️ Run the global lint before bundling.
 
@@ -129,14 +129,29 @@ export default antfu({
 
 For all options please refer to [docs](https://github.com/52-entertainment/vite-plugin-oxlint).
 
-This plugin accepts all [vite-plugin-oxlint](https://github.com/52-entertainment/vite-plugin-oxlint), and some extra options that are specific to this plugin.
+This plugin accepts most options of [vite-plugin-oxlint](https://github.com/52-entertainment/vite-plugin-oxlint), and some extra options that are specific to this plugin.
 
-### `options.path`
+### ~~`options.path`~~
+
+- ~~Type: `string | string[]`~~
+- ~~Default: `'.'`~~
+
+### `options.includes`
 
 - Type: `string | string[]`
-- Default: `''`
+- Default: `'**/*.{js,ts,jsx,tsx,vue}'`
 
-Single file, single path or list of paths
+Paths to files, dirs to be watched by glob patterns
+
+### `options.excludes`
+
+- Type: `RegExp[]`
+- Default: `[/[\\/]node_modules[\\/]/, /[\\/]\.git[\\/]/]`
+
+### `options.rootDir`
+
+- Type: `string`
+- Default: `'.'`
 
 ### `options.fix`
 
@@ -151,16 +166,6 @@ Fix as many issues as possible. Only unfixed issues are reported in the output
 - Default: `false`
 
 Continue to watch for changes in any of the resolved path
-
-### `options.includes`
-
-- Type: `string[] | RegExp[]`
-- Default: `[/\.[jt]sx?$/, /\.vue$/, /\.vue\?vue/, /\.svelte$/]`
-
-### `options.excludes`
-
-- Type: `string[] | RegExp[]`
-- Default: `[/[\\/]node_modules[\\/]/, /[\\/]\.git[\\/]/]`
 
 ### `options.config`
 

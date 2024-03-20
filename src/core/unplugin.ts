@@ -11,7 +11,7 @@ let watcher: FSWatcher
 export const unplugin = createUnplugin<Partial<OxlintOptions> | undefined>((rawOptions = {}) => {
   const ctx = createOxlint(rawOptions)
 
-  const paths = [ctx.options.includes].flat().map(path => join(process.cwd(), path))
+  const paths = [ctx.options.includes].flat().map(path => join(process.cwd(), ctx.options.rootDir || '.', path))
 
   watcher = chokidar.watch(paths, {
     ignored: id => normalizeIgnores(ctx.options.excludes).some(regex => regex.test(id)),
