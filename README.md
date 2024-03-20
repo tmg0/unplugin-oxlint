@@ -18,6 +18,8 @@
 
 🚀 The transformation process will only be blocked during the initial compilation.
 
+![screenshot](./assets/screenshot.webp)
+
 ## Installation
 
 ```bash
