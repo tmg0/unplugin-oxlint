@@ -7,7 +7,7 @@ export default defineConfig({
   plugins: [
     vue(),
     Oxlint({
-      path: 'src',
+      includes: ['src/**/*.{ts,vue}'],
       deny: ['correctness'],
       packageManager: 'npm',
     }),

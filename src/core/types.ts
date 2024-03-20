@@ -2,9 +2,9 @@ import type { ESLint } from 'eslint'
 import type { PackageManager } from 'nypm'
 
 export interface OxlintOptions {
-  includes: RegExp[]
+  rootDir: string
+  includes: string | string[]
   excludes: RegExp[]
-  path: string | string[]
   deny: string[]
   allow: string[]
   fix: boolean

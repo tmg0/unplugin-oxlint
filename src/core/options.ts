@@ -2,7 +2,7 @@ import { defu } from 'defu'
 import type { OxlintOptions } from './types'
 
 const DEFAULT_OXLINT_OPTIONS: Partial<OxlintOptions> = {
-  path: '.',
+  rootDir: '.',
   deny: [],
   allow: [],
   fix: false,
@@ -12,7 +12,7 @@ const DEFAULT_OXLINT_OPTIONS: Partial<OxlintOptions> = {
   quiet: false,
   denyWarnings: false,
   watch: false,
-  includes: [/\.[jt]sx?$/, /\.vue$/, /\.vue\?vue/, /\.svelte$/],
+  includes: '**/*.{js,ts,jsx,tsx,vue}',
   excludes: [/[\\/]node_modules[\\/]/, /[\\/]\.git[\\/]/],
 }
 

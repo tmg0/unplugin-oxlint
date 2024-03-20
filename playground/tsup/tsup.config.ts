@@ -7,7 +7,7 @@ export default defineConfig(({ watch }) => ({
   esbuildPlugins: [
     Oxlint({
       watch: !!watch,
-      path: 'src',
+      includes: ['src/**/*.ts'],
       deny: ['all'],
       packageManager: 'npm',
     }),

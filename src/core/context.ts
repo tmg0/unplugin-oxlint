@@ -80,8 +80,7 @@ function createInternalContext(options: OxlintOptions): OxlintContext {
     Object.entries(lintResultRecord).forEach(([filename, results]) => {
       consola.warn(`[unplugin-oxlint] ${colors.blue(filename)}`)
       results.forEach(({ message, severity, linter, ruleId }) => {
-        const tag = linter === 'oxlint' ? [linter, 'eslint'].join('-') : linter
-        const suffix = ` (${colors.gray(tag)}: ${colors.blue(ruleId)})\n`
+        const suffix = ` (${colors.gray(linter)}: ${colors.blue(ruleId)})\n`
         if (severity === 'error')
           process.stdout.write(`       ${colors.red('✘')} ${colors.red(message)}${suffix}`)
         if (severity === 'warning')

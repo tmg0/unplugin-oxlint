@@ -1,3 +1,3 @@
 import { createOxlint } from '../src/core/context'
 
-createOxlint({ path: 'src' }).setup()
+createOxlint({ includes: ['src/**/*.ts'] }).setup()

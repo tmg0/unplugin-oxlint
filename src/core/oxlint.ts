@@ -54,7 +54,7 @@ function detectOxlintMessage(message: string) {
 export async function runOxlintCommand(ids: string | string[], ctx: OxlintContext) {
   const options = ctx.options
 
-  const paths = normalizeAbsolutePath(ids, options.path)
+  const paths = normalizeAbsolutePath(ids, options.rootDir)
 
   const { stdout } = await runNpxCommand('oxlint', [
     ...options.deny.map(d => ['-D', d]).flat(),
@@ -99,7 +99,7 @@ function resolveESLintOptions({ options }: OxlintContext): ESLint.Options {
 
 export async function runESLintCommand(ids: string | string[], ctx: OxlintContext) {
   const options = ctx.options
-  const paths = normalizeAbsolutePath(ids, options.path || ['.'])
+  const paths = normalizeAbsolutePath(ids, options.rootDir || '.')
 
   const eslint = await createESLint(resolveESLintOptions(ctx))
   const results = await eslint.lintFiles(paths)
