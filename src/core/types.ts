@@ -35,7 +35,8 @@ export interface OxlintContext {
   setHoldingStatus: (value: boolean) => void
   getFileHash: (id: string) => string
   setFileHash: (id: string, hash: string) => void
-  setLintResults: (filename: string, result: Omit<LintResult, 'filename'>) => void
+  insertLintResult: (filename: string, result: Omit<LintResult, 'filename'>) => void
+  resetLintResults: (filename: string) => void
   outputLintResults: () => void
   detectDependencies: () => Promise<void>
   isExist: (dep: 'oxlint' | 'eslint') => boolean
