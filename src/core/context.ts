@@ -29,6 +29,7 @@ export function createOxlint(rawOptions: Partial<OxlintOptions> = {}) {
     getHoldingStatus: ctx.getHoldingStatus,
     getFileHash: ctx.getFileHash,
     setFileHash: ctx.setFileHash,
+    resetLintResults: ctx.resetLintResults,
   }
 }
 
@@ -61,8 +62,13 @@ function createInternalContext(options: OxlintOptions): OxlintContext {
     return fileHashRecord[id]
   }
 
-  function setFileHash(id: string, hash: string) {
-    fileHashRecord[id] = hash
+  function setFileHash(id: string, hash: string | undefined) {
+    if (hash) {
+      fileHashRecord[id] = hash
+      return
+    }
+
+    delete fileHashRecord[id]
   }
 
   function insertLintResult(filename: string, result: Omit<LintResult, 'filename'>) {

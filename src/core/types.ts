@@ -34,7 +34,7 @@ export interface OxlintContext {
   getHoldingStatus: () => boolean
   setHoldingStatus: (value: boolean) => void
   getFileHash: (id: string) => string
-  setFileHash: (id: string, hash: string) => void
+  setFileHash: (id: string, hash: string | undefined) => void
   insertLintResult: (filename: string, result: Omit<LintResult, 'filename'>) => void
   resetLintResults: (filename: string) => void
   outputLintResults: () => void

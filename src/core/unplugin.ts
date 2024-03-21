@@ -32,6 +32,11 @@ export const unplugin = createUnplugin<Partial<OxlintOptions> | undefined>((rawO
     ctx.runLintCommand(id)
   })
 
+  watcher.on('unlink', (id) => {
+    ctx.setFileHash(id, undefined)
+    ctx.resetLintResults(id)
+  })
+
   return {
     name: 'oxlint',
     async buildEnd() {
