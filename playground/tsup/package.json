@@ -5,7 +5,7 @@
   },
   "devDependencies": {
     "eslint": "^8.57.0",
-    "oxlint": "^0.2.13",
+    "oxlint": "^0.2.14",
     "tsup": "^8.0.2"
   }
 }
