@@ -87,6 +87,8 @@ export async function runOxlintCommand(ids: string | string[], ctx: OxlintContex
       })
     })
   }
+
+  return outputs
 }
 
 function resolveESLintOptions({ options }: OxlintContext): ESLint.Options {
@@ -120,6 +122,8 @@ export async function runESLintCommand(ids: string | string[], ctx: OxlintContex
       })
     })
   })
+
+  return results
 }
 
 export async function runLintCommand(ids: string | string[], ctx: OxlintContext) {

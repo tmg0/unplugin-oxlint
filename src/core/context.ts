@@ -34,7 +34,7 @@ export function createOxlint(rawOptions: Partial<OxlintOptions> = {}) {
   }
 }
 
-function createInternalContext(options: OxlintOptions): OxlintContext {
+export function createInternalContext(options: OxlintOptions): OxlintContext {
   let isHolding = true
   let hasESLint: boolean | null = null
   let hasOxlint: boolean | null = null
