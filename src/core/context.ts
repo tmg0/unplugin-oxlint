@@ -30,6 +30,7 @@ export function createOxlint(rawOptions: Partial<OxlintOptions> = {}) {
     getFileHash: ctx.getFileHash,
     setFileHash: ctx.setFileHash,
     resetLintResults: ctx.resetLintResults,
+    outputLintResults: ctx.outputLintResults,
   }
 }
 

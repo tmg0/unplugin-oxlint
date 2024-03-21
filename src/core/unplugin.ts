@@ -35,6 +35,7 @@ export const unplugin = createUnplugin<Partial<OxlintOptions> | undefined>((rawO
   watcher.on('unlink', (id) => {
     ctx.setFileHash(id, undefined)
     ctx.resetLintResults(id)
+    ctx.outputLintResults()
   })
 
   return {
