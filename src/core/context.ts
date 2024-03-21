@@ -37,7 +37,7 @@ function createInternalContext(options: OxlintOptions): OxlintContext {
   let hasESLint: boolean | null = null
   let hasOxlint: boolean | null = null
   let packageManagerName: PackageManagerName | undefined = options.packageManager
-  let lintResultRecord: Record<string, LintResult[]> = {}
+  const lintResultRecord: Record<string, LintResult[]> = {}
 
   const fileHashRecord: Record<string, string> = {}
 
@@ -65,11 +65,16 @@ function createInternalContext(options: OxlintOptions): OxlintContext {
     fileHashRecord[id] = hash
   }
 
-  function setLintResults(filename: string, result: Omit<LintResult, 'filename'>) {
+  function insertLintResult(filename: string, result: Omit<LintResult, 'filename'>) {
     filename = relative(process.cwd(), filename)
     if (!lintResultRecord[filename])
       lintResultRecord[filename] = []
     lintResultRecord[filename].push({ ...result, filename })
+  }
+
+  function resetLintResults(filename: string) {
+    filename = relative(process.cwd(), filename)
+    lintResultRecord[filename] = []
   }
 
   function outputLintResults() {
@@ -78,18 +83,18 @@ function createInternalContext(options: OxlintOptions): OxlintContext {
 
     process.stdout.write('\r\n')
     Object.entries(lintResultRecord).forEach(([filename, results]) => {
-      consola.warn(`[unplugin-oxlint] ${colors.blue(filename)}`)
-      results.forEach(({ message, severity, linter, ruleId }) => {
-        const suffix = ` (${colors.gray(linter)}: ${colors.blue(ruleId)})\n`
-        if (severity === 'error')
-          process.stdout.write(`       ${colors.red('✘')} ${colors.red(message)}${suffix}`)
-        if (severity === 'warning')
-          process.stdout.write(`       ${colors.yellow('⚠')} ${colors.yellow(message)}${suffix}`)
-      })
+      if (results.length) {
+        consola.warn(`[unplugin-oxlint] ${colors.blue(filename)}`)
+        results.forEach(({ message, severity, linter, ruleId }) => {
+          const suffix = ` (${colors.gray(linter)}: ${colors.blue(ruleId)})\n`
+          if (severity === 'error')
+            process.stdout.write(`       ${colors.red('✘')} ${colors.red(message)}${suffix}`)
+          if (severity === 'warning')
+            process.stdout.write(`       ${colors.yellow('⚠')} ${colors.yellow(message)}${suffix}`)
+        })
+      }
     })
     process.stdout.write('\r\n\r\n')
-
-    lintResultRecord = {}
   }
 
   async function detectDependencies() {
@@ -120,7 +125,8 @@ function createInternalContext(options: OxlintOptions): OxlintContext {
     setHoldingStatus,
     getFileHash,
     setFileHash,
-    setLintResults,
+    insertLintResult,
+    resetLintResults,
     outputLintResults,
     detectDependencies,
     isExist,

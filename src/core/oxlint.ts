@@ -3,7 +3,7 @@ import { ESLint } from 'eslint'
 import { defu } from 'defu'
 import { destr } from 'destr'
 import type { NpxCommand, OxlintContext, OxlintOutput } from './types'
-import { createESLint, normalizeAbsolutePath } from './utils'
+import { createESLint, isString, normalizeAbsolutePath } from './utils'
 import { oxlintRE } from './regexp'
 
 const agents = {
@@ -79,7 +79,7 @@ export async function runOxlintCommand(ids: string | string[], ctx: OxlintContex
   if (Array.isArray(outputs)) {
     outputs.forEach(({ filename, severity, message }) => {
       const { ruleId, content } = detectOxlintMessage(message)
-      ctx.setLintResults(filename, {
+      ctx.insertLintResult(filename, {
         linter: 'oxlint',
         severity,
         message: content,
@@ -112,7 +112,7 @@ export async function runESLintCommand(ids: string | string[], ctx: OxlintContex
   results.forEach(({ filePath: filename, messages }) => {
     messages.forEach(({ message, severity, ruleId }) => {
       const ESLINT_SEVERITY = ['off', 'warning', 'error']
-      ctx.setLintResults(filename, {
+      ctx.insertLintResult(filename, {
         linter: 'eslint',
         severity: ESLINT_SEVERITY[severity] as any,
         ruleId: ruleId ?? '',
@@ -124,6 +124,13 @@ export async function runESLintCommand(ids: string | string[], ctx: OxlintContex
 
 export async function runLintCommand(ids: string | string[], ctx: OxlintContext) {
   ctx.setHoldingStatus(true)
+
+  if (isString(ids) ? !!ids : ids.length) {
+    [ids].flat().forEach((filename) => {
+      ctx.resetLintResults(filename)
+    })
+  }
+
   await Promise.all([
     ctx.isExist('oxlint') ? runOxlintCommand(ids, ctx) : undefined,
     ctx.isExist('eslint') ? runESLintCommand(ids, ctx) : undefined,
