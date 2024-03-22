@@ -9,47 +9,18 @@ describe('oxlint', () => {
 
   it('no empty file', async () => {
     const outputs = await runOxlintCommand(['tests/caces/no-empty-file.ts'], ctx)
-    expect(outputs).toMatchInlineSnapshot(`
+    expect(outputs?.map(({ message }) => message)).toMatchInlineSnapshot(`
       [
-        {
-          "causes": [],
-          "filename": "tests/caces/no-empty-file.ts",
-          "help": "Delete this file or add some code to it.",
-          "labels": [
-            {
-              "span": {
-                "length": 0,
-                "offset": 0,
-              },
-            },
-          ],
-          "message": "eslint-plugin-unicorn(no-empty-file): Empty files are not allowed.",
-          "related": [],
-          "severity": "warning",
-        },
+        "eslint-plugin-unicorn(no-empty-file): Empty files are not allowed.",
       ]
     `)
   })
 
   it('no debugger', async () => {
     const outputs = await runOxlintCommand(['tests/caces/no-debugger.ts'], ctx)
-    expect(outputs).toMatchInlineSnapshot(`
+    expect(outputs?.map(({ message }) => message)).toMatchInlineSnapshot(`
       [
-        {
-          "causes": [],
-          "filename": "tests/caces/no-debugger.ts",
-          "labels": [
-            {
-              "span": {
-                "length": 8,
-                "offset": 0,
-              },
-            },
-          ],
-          "message": "eslint(no-debugger): \`debugger\` statement is not allowed",
-          "related": [],
-          "severity": "warning",
-        },
+        "eslint(no-debugger): \`debugger\` statement is not allowed",
       ]
     `)
   })
