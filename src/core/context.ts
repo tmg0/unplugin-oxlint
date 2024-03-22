@@ -1,9 +1,9 @@
 import process from 'node:process'
-import { join, normalize, relative } from 'node:path'
+import { relative, resolve } from 'node:path'
 import { detectPackageManager } from 'nypm'
 import { consola } from 'consola'
 import { colors } from 'consola/utils'
-import fse from 'fs-extra'
+import { isPackageExists } from 'local-pkg'
 import { version } from '../../package.json'
 import type { LintResult, OxlintContext, OxlintOptions, PackageManagerName } from './types'
 import { runLintCommand } from './oxlint'
@@ -107,8 +107,8 @@ export function createInternalContext(options: OxlintOptions): OxlintContext {
   async function detectDependencies() {
     if ([hasOxlint, hasESLint].includes(null)) {
       const exists = await Promise.all([
-        doesDependencyExist('oxlint'),
-        doesDependencyExist('eslint'),
+        isPackageExists('oxlint', { paths: [resolve(options.rootDir)] }),
+        isPackageExists('eslint', { paths: [resolve(options.rootDir)] }),
       ])
       hasOxlint = exists[0]
       hasESLint = exists[1]
@@ -138,17 +138,4 @@ export function createInternalContext(options: OxlintOptions): OxlintContext {
     detectDependencies,
     isExist,
   }
-}
-
-async function doesDependencyExist(name: string) {
-  const segments = normalize(process.cwd()).split('/')
-  const path = join(segments.join('/') || '/', 'package.json')
-  if (fse.pathExistsSync(path)) {
-    const packageJSON = (await fse.readJSON(path))
-    if (Object.keys(packageJSON.dependencies ?? {}).includes(name))
-      return true
-    if (Object.keys(packageJSON.devDependencies ?? {}).includes(name))
-      return true
-  }
-  return false
 }

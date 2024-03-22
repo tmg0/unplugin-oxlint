@@ -25,3 +25,30 @@ jobs:
 
       - name: Lint
         run: pnpm lint
+  
+  tests:
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        node: [18, 20]
+      fail-fast: false
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set node ${{ matrix.node }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+
+      - name: Setup
+        run: npm i -g pnpm
+
+      - name: Install
+        run: pnpm i
+
+      - name: Test
+        run: pnpm test
+
