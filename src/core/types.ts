@@ -30,7 +30,7 @@ export interface OxlintContext {
   version: string
   options: OxlintOptions
   getPackageManager: () => Promise<PackageManagerName>
-  runLintCommand: (ids: string | string[], ctx: OxlintContext) => Promise<void>
+  runLintCommand: (ids: string | string[], ctx: OxlintContext) => Promise<LintResult[]>
   getHoldingStatus: () => boolean
   setHoldingStatus: (value: boolean) => void
   getFileHash: (id: string) => string

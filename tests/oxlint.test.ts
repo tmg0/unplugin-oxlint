@@ -9,18 +9,18 @@ describe('oxlint', () => {
 
   it('no empty file', async () => {
     const outputs = await runOxlintCommand(['tests/caces/no-empty-file.ts'], ctx)
-    expect(outputs?.map(({ message }) => message)).toMatchInlineSnapshot(`
+    expect(outputs.map(({ message }) => message)).toMatchInlineSnapshot(`
       [
-        "eslint-plugin-unicorn(no-empty-file): Empty files are not allowed.",
+        "Empty files are not allowed.",
       ]
     `)
   })
 
   it('no debugger', async () => {
     const outputs = await runOxlintCommand(['tests/caces/no-debugger.ts'], ctx)
-    expect(outputs?.map(({ message }) => message)).toMatchInlineSnapshot(`
+    expect(outputs.map(({ message }) => message)).toMatchInlineSnapshot(`
       [
-        "eslint(no-debugger): \`debugger\` statement is not allowed",
+        "\`debugger\` statement is not allowed",
       ]
     `)
   })

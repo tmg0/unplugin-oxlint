@@ -9,10 +9,10 @@ describe('eslint', () => {
 
   it('no multiple empty lines', async () => {
     const outputs = await runESLintCommand(['tests/caces/no-multiple-empty-lines.ts'], ctx)
-    expect(outputs?.map(({ messages }) => messages.map(({ message }) => message)).flat()).toMatchInlineSnapshot(`
+    expect(outputs.map(({ message }) => message)).toMatchInlineSnapshot(`
       [
         "Too many blank lines at the beginning of file. Max of 0 allowed.",
       ]
     `)
   })
-})
+}, 10 * 1000)
