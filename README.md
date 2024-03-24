@@ -8,11 +8,13 @@
 
 🚀 A quick and simple way to use oxlint in your project.
 
+🛠️ Supports linting with both bundler plugin and Node.js API.
+
 ⚙️ Support common bundlers like Vite, Rollup, esbuild, and Webpack by [unplugin](https://github.com/unjs/unplugin).
 
 🔍 Support mixed use in eslint projects by [eslint-plugin-oxlint](https://github.com/oxc-project/eslint-plugin-oxlint).
 
-😊 Friendly output in terminal, grouped by filepath, and support including lint targets by glob.
+😊 Friendly output in terminal, grouped by filepath, and support including targets with glob patterns.
 
 ⚡ Only lint the files that have changed for better performance by [chokidar](https://github.com/paulmillr/chokidar).
 
@@ -32,6 +34,10 @@ yarn add -D oxlint unplugin-oxlint
 ```
 
 ## Usage
+
+### `Bundler Plugin`
+
+Recommended the bundler plugin way to use the full `options` of `unplugin-oxlint`.
 
 <details>
 <summary>Vite</summary><br>
@@ -87,6 +93,38 @@ module.exports = {
 ```
 
 <br></details>
+
+### `Node.js API`
+
+For cases that require execution in a Node.js environment, an API method is also provided to perform linting actions.
+
+Tips: The Node.js API supports most `options` except for `watch`.
+
+```ts
+import { lint } from 'unplugin-oxlint'
+
+lint({ includes: 'src/**/*.ts' })
+```
+
+### Example
+
+If you're looking for a way to use `lint` in `scripts`, recommended to try executing the script with [jiti](https://github.com/unjs/jiti).
+
+```ts
+// scripts/lint.ts
+import { lint } from '../src'
+
+lint({ includes: 'src/**/*.ts' })
+```
+
+```json
+// package.json
+{
+  "scripts": {
+    "lint": "jiti scripts/lint.ts"
+  }
+}
+```
 
 ## Playground
 
