@@ -106,8 +106,6 @@ import { lint } from 'unplugin-oxlint'
 lint({ includes: 'src/**/*.ts' })
 ```
 
-### Example
-
 If you're looking for a way to use `lint` in `scripts`, recommended to try executing the script with [jiti](https://github.com/unjs/jiti).
 
 ```ts
@@ -118,7 +116,6 @@ lint({ includes: 'src/**/*.ts' })
 ```
 
 ```json
-// package.json
 {
   "scripts": {
     "lint": "jiti scripts/lint.ts"
