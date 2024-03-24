@@ -1,3 +1,3 @@
-import { createOxlint } from '../src/core/context'
+import { lint } from '../src'
 
-createOxlint({}).runLintCommand('src')
+lint({ includes: 'src/**/*.ts' })
