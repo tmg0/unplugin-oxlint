@@ -8,7 +8,7 @@
 
 🚀 A quick and simple way to use oxlint in your project.
 
-🛠️ Supports linting with both bundler plugin and Node.js API.
+🛠️ Support linting with both bundler plugin and Node.js API.
 
 ⚙️ Support common bundlers like Vite, Rollup, esbuild, and Webpack by [unplugin](https://github.com/unjs/unplugin).
 
