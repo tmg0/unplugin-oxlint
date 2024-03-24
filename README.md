@@ -6,17 +6,15 @@
 
 ## Features
 
-⚙️ Support common bundlers like Vite, Rollup, esbuild, and Webpack, powered by [unplugin](https://github.com/unjs/unplugin)
+🚀 A quick and simple way to use oxlint in your project.
 
-🔍 Support using ESLint with oxlint; automatically run lint actions after oxlint.
+⚙️ Support common bundlers like Vite, Rollup, esbuild, and Webpack by [unplugin](https://github.com/unjs/unplugin).
 
-😊 Friendly output in terminal, grouped by filepath. Support includes lint target files by glob.
+🔍 Support mixed use in eslint projects by [eslint-plugin-oxlint](https://github.com/oxc-project/eslint-plugin-oxlint).
 
-🛠️ Run the global lint before bundling.
+😊 Friendly output in terminal, grouped by filepath, and support including lint targets by glob.
 
-⚡ Only lint the files that have changed for better performance using [chokidar](https://github.com/paulmillr/chokidar).
-
-🚀 The transformation process will only be blocked during the initial compilation.
+⚡ Only lint the files that have changed for better performance by [chokidar](https://github.com/paulmillr/chokidar).
 
 ![screenshot](./assets/screenshot.webp)
 
