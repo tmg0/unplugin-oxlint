@@ -142,7 +142,7 @@ npm i -D eslint eslint-plugin-oxlint
 # pnpm
 pnpm add -D eslint eslint-plugin-oxlint
 
-# yar
+# yarn
 yarn add -D eslint eslint-plugin-oxlint
 ```
 
