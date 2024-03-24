@@ -2,7 +2,7 @@ import { execa } from 'execa'
 import { ESLint } from 'eslint'
 import { defu } from 'defu'
 import { destr } from 'destr'
-import type { NpxCommand, OxlintContext, OxlintOutput } from './types'
+import type { LintResult, NpxCommand, OxlintContext, OxlintOutput } from './types'
 import { createESLint, isString, normalizeAbsolutePath } from './utils'
 import { oxlintRE } from './regexp'
 
@@ -74,21 +74,25 @@ export async function runOxlintCommand(ids: string | string[], ctx: OxlintContex
     return value.slice(0, index).trim()
   }
 
+  const results: LintResult[] = []
   const outputs = destr<OxlintOutput[]>(format(stdout))
 
   if (Array.isArray(outputs)) {
     outputs.forEach(({ filename, severity, message }) => {
       const { ruleId, content } = detectOxlintMessage(message)
-      ctx.insertLintResult(filename, {
+      const result: LintResult = {
+        filename,
         linter: 'oxlint',
         severity,
         message: content,
         ruleId,
-      })
+      }
+      results.push(result)
+      ctx.insertLintResult(filename, result)
     })
   }
 
-  return outputs
+  return results
 }
 
 function resolveESLintOptions({ options }: OxlintContext): ESLint.Options {
@@ -104,29 +108,34 @@ export async function runESLintCommand(ids: string | string[], ctx: OxlintContex
   const paths = normalizeAbsolutePath(ids, options.rootDir || '.')
 
   const eslint = await createESLint(resolveESLintOptions(ctx))
-  const results = await eslint.lintFiles(paths)
+  const outputs = await eslint.lintFiles(paths)
 
   if (options.fix)
-    await ESLint.outputFixes(results)
+    await ESLint.outputFixes(outputs)
   if (options.quiet)
-    return
+    return []
 
-  results.forEach(({ filePath: filename, messages }) => {
+  const results: LintResult[] = []
+
+  outputs.forEach(({ filePath: filename, messages }) => {
     messages.forEach(({ message, severity, ruleId }) => {
       const ESLINT_SEVERITY = ['off', 'warning', 'error']
-      ctx.insertLintResult(filename, {
+      const result: LintResult = {
+        filename,
         linter: 'eslint',
         severity: ESLINT_SEVERITY[severity] as any,
         ruleId: ruleId ?? '',
         message,
-      })
+      }
+      results.push(result)
+      ctx.insertLintResult(filename, result)
     })
   })
 
   return results
 }
 
-export async function runLintCommand(ids: string | string[], ctx: OxlintContext) {
+export async function runLintCommand(ids: string | string[], ctx: OxlintContext): Promise<LintResult[]> {
   ctx.setHoldingStatus(true)
 
   if (isString(ids) ? !!ids : ids.length) {
@@ -135,10 +144,11 @@ export async function runLintCommand(ids: string | string[], ctx: OxlintContext)
     })
   }
 
-  await Promise.all([
+  const results = await Promise.all([
     ctx.isExist('oxlint') ? runOxlintCommand(ids, ctx) : undefined,
     ctx.isExist('eslint') ? runESLintCommand(ids, ctx) : undefined,
   ].filter(Boolean))
   ctx.outputLintResults()
   ctx.setHoldingStatus(false)
+  return results.flat() as LintResult[]
 }
