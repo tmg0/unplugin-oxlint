@@ -123,6 +123,20 @@ lint({ includes: 'src/**/*.ts' })
 }
 ```
 
+And the `lint` function can alse be used for creating integrations with other projects.
+
+```ts
+type Lint = (options: Omit<Options, 'watch'>) => Promise<LintResult[]>
+
+interface LintResult {
+  filename: string
+  severity: 'off' | 'warning' | 'error'
+  message: string
+  linter: 'oxlint' | 'eslint'
+  ruleId: string
+}
+```
+
 ## Playground
 
 See [playground]('./playground').
