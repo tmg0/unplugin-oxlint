@@ -85,7 +85,8 @@ export function createInternalContext(options: OxlintOptions): OxlintContext {
   }
 
   function outputLintResults() {
-    if (!Object.keys(lintResultRecord ?? {})?.length)
+    const isEmpty = !Object.values(lintResultRecord ?? {}).filter(results => !!results.length)?.length
+    if (isEmpty)
       return
 
     process.stdout.write('\r\n')
