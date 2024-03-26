@@ -101,19 +101,13 @@ For cases that require execution in a Node.js environment, an API method is also
 Tips: The Node.js API supports most `options` except for `watch`.
 
 ```ts
+// scripts/lint.ts
 import { lint } from 'unplugin-oxlint'
 
 lint({ includes: 'src/**/*.ts' })
 ```
 
 If you're looking for a way to use `lint` in `scripts`, recommended to try executing the script with [jiti](https://github.com/unjs/jiti).
-
-```ts
-// scripts/lint.ts
-import { lint } from '../src'
-
-lint({ includes: 'src/**/*.ts' })
-```
 
 ```json
 {
