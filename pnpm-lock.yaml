@@ -59,7 +59,7 @@ importers:
         version: 0.20.2
       eslint-plugin-oxlint:
         specifier: ^0.2.4
-        version: 0.2.7
+        version: 0.2.8
       jiti:
         specifier: ^1.21.0
         version: 1.21.0
@@ -2311,8 +2311,8 @@ packages:
     engines: {node: '>=5.0.0'}
     dev: true
 
-  /eslint-plugin-oxlint@0.2.7:
-    resolution: {integrity: sha512-cEdPDbxsK3/xtnW7PFPb/lOmeMFJvedeJuaG/7PByVuHjxjy8yOk8l1I6aAjlgFpWNhxjBrPU8cq/AEyfoZ03Q==}
+  /eslint-plugin-oxlint@0.2.8:
+    resolution: {integrity: sha512-BIGgqV1xLnK6NRsbt9bYuRflU0hHofocdDWSjpRyjSvBlDOJAlVG1HiNu8VQlO8jrXn/F4VpOD6ExNZfs3esVA==}
     dev: true
 
   /eslint-plugin-perfectionist@2.7.0(eslint@9.0.0)(typescript@5.4.3)(vue-eslint-parser@9.4.2):
