@@ -65,13 +65,15 @@ export async function runOxlintCommand(ids: string | string[], ctx: OxlintContex
     options.noIgnore ? '--no-ignore' : '',
     options.quiet ? '--quiet' : '',
     options.denyWarnings ? '--deny-warnings' : '',
-    '--format',
+    ...['--format', 'json'],
     ...paths,
   ], ctx)
 
   function format(value: string) {
     const index = value.indexOf('Finished')
-    return value.slice(0, index).trim()
+    if (index > -1)
+      return value.slice(0, index).trim()
+    return value
   }
 
   const results: LintResult[] = []
