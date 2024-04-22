@@ -79,7 +79,7 @@
     "test": "vitest"
   },
   "peerDependencies": {
-    "oxlint": "^0.2.13"
+    "oxlint": "^0.2.13 || ^0.3.0"
   },
   "dependencies": {
     "chokidar": "^3.6.0",
@@ -102,7 +102,7 @@
     "esbuild": "^0.20.2",
     "eslint-plugin-oxlint": "^0.2.4",
     "jiti": "^1.21.0",
-    "oxlint": "^0.2.14",
+    "oxlint": "^0.3.0",
     "tsup": "^8.0.2",
     "typescript": "^5.4.3",
     "vitest": "^1.4.0"
