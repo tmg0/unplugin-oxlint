@@ -1,7 +1,7 @@
 import { defu } from 'defu'
 import type { OxlintOptions } from './types'
 
-const DEFAULT_OXLINT_OPTIONS: Partial<OxlintOptions> = {
+export const DEFAULT_OXLINT_OPTIONS: Partial<OxlintOptions> = {
   rootDir: '.',
   deny: [],
   allow: [],

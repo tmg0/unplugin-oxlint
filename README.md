@@ -94,48 +94,33 @@ module.exports = {
 
 <br></details>
 
-### `Node.js API`
+### `Command`
 
-For cases that require execution in a Node.js environment, an API method is also provided to perform linting actions.
-
-Tips: The Node.js API supports most `options` except for `watch`.
-
-```ts
-// scripts/lint.ts
-import { lint } from 'unplugin-oxlint'
-
-lint({ includes: 'src/**/*.ts' })
-```
-
-If you're looking for a way to use `lint` in `scripts`, recommended to try executing the script with [jiti](https://github.com/unjs/jiti).
+You can also use `unox` command to lint files like eslint
 
 ```json
+// package.json
 {
   "scripts": {
-    "lint": "jiti scripts/lint.ts"
+    "lint": "unox",
+    "lint:fix": "unox --fix"
   }
 }
 ```
 
-And the `lint` function can alse be used for creating integrations with other projects.
+`unox` support most of the options of `unplugin-oxlint`, use them as params like:
 
-```ts
-type Lint = (options: Omit<Options, 'watch'>) => Promise<LintResult[]>
-
-interface LintResult {
-  filename: string
-  severity: 'off' | 'warning' | 'error'
-  message: string
-  linter: 'oxlint' | 'eslint'
-  ruleId: string
-}
+```bash
+unox src/**/*.ts --watch
 ```
+
+For further configuration, create a config file named `unox.config.{js,cjs,mjs,ts,mts,cts}`
 
 ## Playground
 
 See [playground]('./playground').
 
-## Eslint
+## ESLint
 
 If you are looking for a way to use oxlint in projects that still need ESLint, You can use [eslint-plugin-oxlint](https://github.com/oxc-project/eslint-plugin-oxlint) to turn off ESLint rules that are already supported by oxlint.
 
