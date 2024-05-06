@@ -65,7 +65,8 @@ export async function runOxlintCommand(ids: string | string[], ctx: OxlintContex
     options.noIgnore ? '--no-ignore' : '',
     options.quiet ? '--quiet' : '',
     options.denyWarnings ? '--deny-warnings' : '',
-    ...['--format', 'json'],
+    '--format',
+    'json',
     ...paths,
   ], ctx)
 
@@ -150,6 +151,7 @@ export async function runLintCommand(ids: string | string[], ctx: OxlintContext)
     ctx.isExist('oxlint') ? runOxlintCommand(ids, ctx) : undefined,
     ctx.isExist('eslint') ? runESLintCommand(ids, ctx) : undefined,
   ].filter(Boolean))
+
   ctx.outputLintResults()
   ctx.setHoldingStatus(false)
   return results.flat() as LintResult[]

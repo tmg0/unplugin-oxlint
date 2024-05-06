@@ -1,29 +1,66 @@
 import process from 'node:process'
 import { relative, resolve } from 'node:path'
+import { join } from 'node:path'
 import { detectPackageManager } from 'nypm'
 import { consola } from 'consola'
 import { colors } from 'consola/utils'
+import chokidar, { type FSWatcher } from 'chokidar'
 import { isPackageExists } from 'local-pkg'
 import { version } from '../../package.json'
 import type { LintResult, OxlintContext, OxlintOptions, PackageManagerName } from './types'
-import { runLintCommand } from './oxlint'
+import { runLintCommand as _runLintCommand } from './oxlint'
 import { resolveOptions } from './options'
+import { generateFileHash, normalizeIgnores } from './utils'
+
+let watcher: FSWatcher
+
+function setupWatcher(paths: string[], ctx: OxlintContext) {
+  watcher = chokidar.watch(paths, {
+    ignored: id => normalizeIgnores(ctx.options.excludes).some(regex => regex.test(id)),
+    persistent: true,
+  })
+
+  watcher.on('change', (id) => {
+    if (ctx.getHoldingStatus())
+      return
+    const hash = generateFileHash(id)
+    if (hash === ctx.getFileHash(id))
+      return
+    ctx.runLintCommand(id, ctx)
+    ctx.setFileHash(id, hash)
+  })
+
+  watcher.on('add', (id) => {
+    ctx.runLintCommand(id, ctx)
+  })
+
+  watcher.on('unlink', (id) => {
+    ctx.setFileHash(id, undefined)
+    ctx.resetLintResults(id)
+    ctx.outputLintResults()
+  })
+}
 
 export function createOxlint(rawOptions: Partial<OxlintOptions> = {}) {
   const options = resolveOptions(rawOptions)
   const ctx = createInternalContext(options)
 
+  const paths = [ctx.options.includes].flat().map(path => join(process.cwd(), ctx.options.rootDir || '.', path))
+
   async function runLintCommandWithContext(ids: string | string[]) {
-    await ctx.detectDependencies()
     return ctx.runLintCommand(ids, ctx)
   }
 
   async function setup() {
-    await runLintCommandWithContext([])
+    if (options.watch)
+      setupWatcher(paths, ctx)
+    if (!options.watch)
+      await runLintCommandWithContext(paths)
   }
 
   return {
     options,
+    watcher,
     setup,
     runLintCommand: runLintCommandWithContext,
     getHoldingStatus: ctx.getHoldingStatus,
@@ -124,6 +161,11 @@ export function createInternalContext(options: OxlintOptions): OxlintContext {
     return false
   }
 
+  async function runLintCommand(ids: string | string[], ctx: OxlintContext) {
+    await detectDependencies()
+    return _runLintCommand(ids, ctx)
+  }
+
   return {
     version,
     options,
@@ -140,3 +182,8 @@ export function createInternalContext(options: OxlintOptions): OxlintContext {
     isExist,
   }
 }
+
+process.on('exit', () => {
+  if (watcher)
+    watcher.close()
+})
