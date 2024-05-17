@@ -14,7 +14,7 @@ export const unplugin = createUnplugin<Partial<OxlintOptions> | undefined>((rawO
     async buildEnd() {
       await until(ctx.getHoldingStatus, false)
       if (!ctx.options.watch)
-        await ctx.watcher.close()
+        await ctx.watcher?.close()
     },
   }
 })
