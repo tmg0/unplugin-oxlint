@@ -185,5 +185,5 @@ export function createInternalContext(options: OxlintOptions): OxlintContext {
 
 process.on('exit', () => {
   if (watcher)
-    watcher.close()
+    watcher.close?.()
 })
