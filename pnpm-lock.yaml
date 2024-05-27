@@ -61,8 +61,8 @@ importers:
         specifier: ^0.21.0
         version: 0.21.4
       eslint-plugin-oxlint:
-        specifier: ^0.2.4
-        version: 0.2.9
+        specifier: ^0.4.0
+        version: 0.4.0
       oxlint:
         specifier: ^0.4.0
         version: 0.4.0
@@ -1508,8 +1508,8 @@ packages:
     resolution: {integrity: sha512-Lf4YW/bL6Un1R6A76pRZyE1dl1vr31G/ev8UzIc/geCgFWyrKil8hVjYqWVKGB/UIGmb6Slzs9T0wNezdSVegw==}
     engines: {node: '>=5.0.0'}
 
-  eslint-plugin-oxlint@0.2.9:
-    resolution: {integrity: sha512-K3aILcHVSSbjJ5W7YxdbMLmoB9G4GHdbDXl9qlPwuWF69BVV2e7/Bpy9osLT+bylv8Y+J6WltsqwXL/Z7sxMgA==}
+  eslint-plugin-oxlint@0.4.0:
+    resolution: {integrity: sha512-nSSfz/lbG0AAAX99lXmVAXnqAtCK4wrigVB+Etf32YETOKlfNgmtY/7EkP3OzIIf4VI2FSH+7W6+oBRqI2Bi4A==}
 
   eslint-plugin-perfectionist@2.7.0:
     resolution: {integrity: sha512-RpSMc0T0DT9DlOj4APzwlAjCqQMxFdsIYlupe73eDkKLn1mMK7fVw2z3nj2y822szKOpvHA7bDa56ySOlr4GXw==}
@@ -2370,6 +2370,9 @@ packages:
 
   run-parallel@1.2.0:
     resolution: {integrity: sha512-5l4VyZR86LZ/lDxZTR6jqL8AFE2S0IFLMP26AbjsLVADxHdhB/c0GUsH+y39UfCi3dzz8OlQuPmnaJOMoDHQBA==}
+
+  scule@1.3.0:
+    resolution: {integrity: sha512-6FtHJEvt+pVMIB9IBY+IcCJ6Z5f1iQnytgyfKMhDKgmzYG+TeH/wx1y3l27rshSbLiSanrR9ffZDrEsmjlQF2g==}
 
   semver@5.7.2:
     resolution: {integrity: sha512-cBznnQ9KjJqU67B52RMC65CMarK2600WFnbkcaiwWq3xy/5haFJlshgnpjovMVJ+Hff49d8GEn0b87C5pDQ10g==}
@@ -4116,7 +4119,9 @@ snapshots:
 
   eslint-plugin-no-only-tests@3.1.0: {}
 
-  eslint-plugin-oxlint@0.2.9: {}
+  eslint-plugin-oxlint@0.4.0:
+    dependencies:
+      scule: 1.3.0
 
   eslint-plugin-perfectionist@2.7.0(eslint@9.3.0)(typescript@5.4.5)(vue-eslint-parser@9.4.2(eslint@9.3.0)):
     dependencies:
@@ -5024,6 +5029,8 @@ snapshots:
   run-parallel@1.2.0:
     dependencies:
       queue-microtask: 1.2.3
+
+  scule@1.3.0: {}
 
   semver@5.7.2: {}
 
