@@ -82,7 +82,7 @@
     "test": "vitest"
   },
   "peerDependencies": {
-    "oxlint": "^0.3.0"
+    "oxlint": "^0.3.0 || ^0.4.0"
   },
   "dependencies": {
     "c12": "^1.10.0",
