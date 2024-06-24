@@ -15,18 +15,8 @@ const agents = {
 
 async function runNpxCommand(command: NpxCommand, args: string[], ctx: OxlintContext) {
   const [agent, dlx] = agents[(await ctx.getPackageManager()) ?? 'npm']
-
-  return execa(
-    agent,
-    [
-      dlx,
-      command,
-      ...args,
-    ].filter(Boolean),
-    {
-      reject: false,
-    },
-  )
+  const params = [dlx, command, ...args].filter(Boolean)
+  return execa(agent, params, { reject: false }) as unknown as Promise<{ stdout: string }>
 }
 
 function detectOxlintMessage(message: string) {

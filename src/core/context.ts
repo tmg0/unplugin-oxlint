@@ -1,6 +1,5 @@
 import process from 'node:process'
-import { relative, resolve } from 'node:path'
-import { join } from 'node:path'
+import { join, relative, resolve } from 'node:path'
 import { detectPackageManager } from 'nypm'
 import { consola } from 'consola'
 import { colors } from 'consola/utils'
