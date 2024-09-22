@@ -118,7 +118,7 @@ For further configuration, create a config file named `unox.config.{js,cjs,mjs,t
 
 ## Playground
 
-See [playground]('./playground').
+See [playground](./playground).
 
 ## ESLint
 
