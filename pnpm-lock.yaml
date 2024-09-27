@@ -40,7 +40,7 @@ importers:
         version: 1.2.0
       nypm:
         specifier: ^0.3.11
-        version: 0.3.11
+        version: 0.3.12
       ohash:
         specifier: ^1.1.4
         version: 1.1.4
@@ -2626,7 +2626,7 @@ packages:
       consola: 3.2.3
       defu: 6.1.4
       node-fetch-native: 1.6.4
-      nypm: 0.3.11
+      nypm: 0.3.12
       ohash: 1.1.4
       pathe: 1.1.2
       tar: 6.2.1
@@ -3206,8 +3206,8 @@ packages:
       boolbase: 1.0.0
     dev: true
 
-  /nypm@0.3.11:
-    resolution: {integrity: sha512-E5GqaAYSnbb6n1qZyik2wjPDZON43FqOJO59+3OkWrnmQtjggrMOVnsyzfjxp/tS6nlYJBA4zRA5jSM2YaadMg==}
+  /nypm@0.3.12:
+    resolution: {integrity: sha512-D3pzNDWIvgA+7IORhD/IuWzEk4uXv6GsgOxiid4UU3h9oq5IqV1KtPDi63n4sZJ/xcWlr88c0QM2RgN5VbOhFA==}
     engines: {node: ^14.16.0 || >=16.10.0}
     hasBin: true
     dependencies:
