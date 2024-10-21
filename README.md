@@ -2,7 +2,7 @@
 
 [![NPM version](https://img.shields.io/npm/v/unplugin-oxlint)](https://www.npmjs.com/package/unplugin-oxlint)
 
-🌋 A universal bundler plugin for integrating the [Oxlint](https://oxc-project.github.io/docs/guide/usage/linter.html) linter into your project, based on [vite-plugin-oxlint](https://github.com/52-entertainment/vite-plugin-oxlint).
+🌋 A universal bundler plugin for integrating the [Oxlint](https://oxc.rs/docs/guide/usage/linter.html#linter-oxlint) linter into your project.
 
 ## Features
 
