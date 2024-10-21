@@ -65,9 +65,6 @@
       ]
     }
   },
-  "bin": {
-    "unox": "./bin/unox.mjs"
-  },
   "files": [
     "dist",
     "scripts"

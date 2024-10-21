@@ -71,8 +71,9 @@ export async function runOxlintCommand(ids: string | string[], ctx: OxlintContex
   const outputs = destr<OxlintOutput[]>(format(stdout))
 
   if (Array.isArray(outputs)) {
-    outputs.forEach(({ filename, severity, message }) => {
-      const { ruleId, content } = detectOxlintMessage(message)
+    outputs.forEach(({ code, filename, severity, message }) => {
+      const { content } = detectOxlintMessage(message)
+      const ruleId = code.match(/\(([^)]+)\)/)?.[1] ?? ''
       const result: LintResult = {
         filename,
         linter: 'oxlint',

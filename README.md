@@ -94,28 +94,6 @@ module.exports = {
 
 <br></details>
 
-### `Command`
-
-You can also use `unox` command to lint files like eslint
-
-```json
-// package.json
-{
-  "scripts": {
-    "lint": "unox",
-    "lint:fix": "unox --fix"
-  }
-}
-```
-
-`unox` support most of the options of `unplugin-oxlint`, use them as params like:
-
-```bash
-unox src/**/*.ts --watch
-```
-
-For further configuration, create a config file named `unox.config.{js,cjs,mjs,ts,mts,cts}`
-
 ## Playground
 
 See [playground](./playground).

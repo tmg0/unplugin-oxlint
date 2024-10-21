@@ -46,6 +46,7 @@ export type CreateESLintOptions = ESLint.Options
 
 export interface OxlintOutput {
   message: string
+  code: string
   severity: 'warning' | 'error'
   causes: string[]
   filename: string
