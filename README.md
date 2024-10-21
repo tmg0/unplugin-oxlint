@@ -94,6 +94,43 @@ module.exports = {
 
 <br></details>
 
+### `Node.js API`
+
+For cases that require execution in a Node.js environment, an API method is also provided to perform linting actions.
+
+Tips: The Node.js API supports most `options` except for `watch`.
+
+```ts
+// scripts/lint.ts
+import { lint } from 'unplugin-oxlint'
+
+lint({ includes: 'src/**/*.ts' })
+```
+
+If you're looking for a way to use `lint` in `scripts`, recommended to try executing the script with [oxrun](https://github.com/tmg0/oxrun).
+
+```json
+{
+  "scripts": {
+    "lint": "oxrun scripts/lint.ts"
+  }
+}
+```
+
+And the `lint` function can alse be used for creating integrations with other projects.
+
+```ts
+type Lint = (options: Omit<Options, 'watch'>) => Promise<LintResult[]>
+
+interface LintResult {
+  filename: string
+  severity: 'off' | 'warning' | 'error'
+  message: string
+  linter: 'oxlint' | 'eslint'
+  ruleId: string
+}
+```
+
 ## Playground
 
 See [playground](./playground).

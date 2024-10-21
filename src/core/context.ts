@@ -51,11 +51,8 @@ export function createOxlint(rawOptions: Partial<OxlintOptions> = {}) {
     return ctx.runLintCommand(ids, ctx)
   }
 
-  async function setup() {
-    if (options.watch)
-      setupWatcher(paths, ctx)
-    else
-      await runLintCommandWithContext(paths)
+  function setup() {
+    return options.watch ? setupWatcher(paths, ctx) : runLintCommandWithContext(paths)
   }
 
   return {
