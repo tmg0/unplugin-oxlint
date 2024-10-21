@@ -14,7 +14,7 @@
 
 🔍 Support mixed use in eslint projects by [eslint-plugin-oxlint](https://github.com/oxc-project/eslint-plugin-oxlint).
 
-😊 Friendly output in terminal, grouped by filepath, and support including targets with glob patterns.
+😊 Friendly output in terminal grouped by filepath.
 
 ⚡ Only lint the files that have changed for better performance by [chokidar](https://github.com/paulmillr/chokidar).
 
@@ -163,9 +163,10 @@ Use [eslint-plugin-oxlint](https://github.com/oxc-project/eslint-plugin-oxlint) 
 import antfu from '@antfu/eslint-config'
 import oxlint from 'eslint-plugin-oxlint'
 
-export default antfu({
-  ...oxlint.configs['flat/recommended'],
-})
+export default [
+  ...await antfu(),
+  oxlint.configs['flat/all'],
+]
 ```
 
 ## Options
