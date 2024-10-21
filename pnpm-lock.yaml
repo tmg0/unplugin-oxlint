@@ -87,6 +87,9 @@ importers:
       tsup:
         specifier: ^8.3.0
         version: 8.3.0(jiti@2.3.3)(postcss@8.4.47)(typescript@5.6.3)
+      unplugin-oxlint:
+        specifier: workspace:*
+        version: link:../..
 
   playground/vite:
     dependencies:

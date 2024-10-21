@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import { createInternalContext } from '../src/core/context'
-import { runOxlintCommand } from '../src/core/oxlint'
 import { resolveOptions } from '../src/core/options'
+import { runOxlintCommand } from '../src/core/oxlint'
 
 describe('oxlint', () => {
   const options = resolveOptions({ packageManager: 'npm' })

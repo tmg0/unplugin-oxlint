@@ -7,7 +7,6 @@ export type LintOptions = Omit<OxlintOptions, 'watch'>
 export async function lint(options: Partial<LintOptions> = {}) {
   const ctx = createOxlint({ ...options, watch: false })
   const results = await ctx.setup()
-  ctx.outputLintResults()
   return results as LintResult[]
 }
 

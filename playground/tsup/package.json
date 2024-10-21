@@ -1,11 +1,14 @@
 {
   "name": "@unplugin-oxlint/tsup",
+  "type": "module",
   "scripts": {
-    "dev": "tsup-node --watch"
+    "dev": "tsup-node --watch",
+    "lint": "node scripts/lint.js"
   },
   "devDependencies": {
     "eslint": "^9.13.0",
     "oxlint": "^0.10.0",
-    "tsup": "^8.3.0"
+    "tsup": "^8.3.0",
+    "unplugin-oxlint": "workspace:*"
   }
 }
