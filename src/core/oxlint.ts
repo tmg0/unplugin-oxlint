@@ -1,10 +1,10 @@
-import { execa } from 'execa'
-import { ESLint } from 'eslint'
+import type { LintResult, NpxCommand, OxlintContext, OxlintOutput } from './types'
 import { defu } from 'defu'
 import { destr } from 'destr'
-import type { LintResult, NpxCommand, OxlintContext, OxlintOutput } from './types'
-import { createESLint, isString, normalizeAbsolutePath } from './utils'
+import { ESLint } from 'eslint'
+import { execa } from 'execa'
 import { oxlintRE } from './regexp'
+import { createESLint, isString, normalizeAbsolutePath } from './utils'
 
 const agents = {
   bun: ['bunx'],

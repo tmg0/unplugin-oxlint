@@ -1,1 +1,1 @@
-export const oxlintRE = /(\w+)\((\w+(?:-\w+)*)\):\s*([\s\S]*)/gm
+export const oxlintRE = /(\w+)\((\w+(?:-\w+)*)\):\s*([\s\S]*)/g

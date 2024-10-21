@@ -1,9 +1,9 @@
+import type { CreateESLintOptions } from './types'
 import { isAbsolute, join } from 'node:path'
 import process from 'node:process'
-import { hash } from 'ohash'
-import fse from 'fs-extra'
 import ESLintNext from 'eslint/use-at-your-own-risk'
-import type { CreateESLintOptions } from './types'
+import fse from 'fs-extra'
+import { hash } from 'ohash'
 
 export function until(value: () => any, truthyValue: any = true, ms: number = 500): Promise<void> {
   return new Promise((resolve) => {

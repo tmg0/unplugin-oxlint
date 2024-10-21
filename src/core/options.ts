@@ -1,5 +1,5 @@
-import { defu } from 'defu'
 import type { OxlintOptions } from './types'
+import { defu } from 'defu'
 
 export const DEFAULT_OXLINT_OPTIONS: Partial<OxlintOptions> = {
   rootDir: '.',

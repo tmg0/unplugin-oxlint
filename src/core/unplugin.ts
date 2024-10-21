@@ -1,6 +1,6 @@
-import { createUnplugin } from 'unplugin'
-
 import type { OxlintOptions } from './types'
+
+import { createUnplugin } from 'unplugin'
 import { createOxlint } from './context'
 import { until } from './utils'
 
