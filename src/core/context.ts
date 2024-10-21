@@ -1,20 +1,21 @@
-import process from 'node:process'
+import type { LintResult, OxlintContext, OxlintOptions, PackageManagerName } from './types'
 import { join, relative, resolve } from 'node:path'
-import { detectPackageManager } from 'nypm'
+import process from 'node:process'
+import chokidar, { type FSWatcher } from 'chokidar'
 import { consola } from 'consola'
 import { colors } from 'consola/utils'
-import chokidar, { type FSWatcher } from 'chokidar'
+import fg from 'fast-glob'
 import { isPackageExists } from 'local-pkg'
+import { detectPackageManager } from 'nypm'
 import { version } from '../../package.json'
-import type { LintResult, OxlintContext, OxlintOptions, PackageManagerName } from './types'
-import { runLintCommand as _runLintCommand } from './oxlint'
 import { resolveOptions } from './options'
+import { runLintCommand as _runLintCommand } from './oxlint'
 import { generateFileHash, normalizeIgnores } from './utils'
 
 let watcher: FSWatcher
 
 function setupWatcher(paths: string[], ctx: OxlintContext) {
-  watcher = chokidar.watch(paths, {
+  watcher = chokidar.watch(fg.sync(paths), {
     ignored: id => normalizeIgnores(ctx.options.excludes).some(regex => regex.test(id)),
     persistent: true,
   })
@@ -71,7 +72,7 @@ export function createOxlint(rawOptions: Partial<OxlintOptions> = {}) {
 }
 
 export function createInternalContext(options: OxlintOptions): OxlintContext {
-  let isHolding = true
+  let isHolding = false
   let hasESLint: boolean | null = null
   let hasOxlint: boolean | null = null
   let packageManagerName: PackageManagerName | undefined = options.packageManager
