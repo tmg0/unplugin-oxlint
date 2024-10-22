@@ -2,6 +2,7 @@ import type { LintResult } from './types'
 import { join } from 'node:path'
 import process from 'node:process'
 import { colors } from 'consola/utils'
+import { version } from '../../package.json'
 
 const defaultLogger = {
   log(value: string) {
@@ -11,7 +12,8 @@ const defaultLogger = {
 
 export function createLogger(logger = defaultLogger) {
   function printBanner() {
-    logger.log(colors.bgCyan(colors.black(' unplugin-oxlint ')))
+    logger.log(colors.bgCyan(colors.black(` v${version} `)))
+    logger.log(' unplugin-oxlint ')
     logger.log('\r\n\r\n')
   }
 
