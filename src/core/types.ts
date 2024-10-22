@@ -1,5 +1,6 @@
 import type { ESLint } from 'eslint'
 import type { PackageManager } from 'nypm'
+import type { createLogger } from './logger'
 
 export interface OxlintOptions {
   rootDir: string
@@ -29,6 +30,7 @@ export interface Oxlint {
 export interface OxlintContext {
   version: string
   options: OxlintOptions
+  logger: ReturnType<typeof createLogger>
   getPackageManager: () => Promise<PackageManagerName>
   runLintCommand: (ids: string | string[], ctx: OxlintContext) => Promise<LintResult[]>
   getHoldingStatus: () => boolean
@@ -44,6 +46,13 @@ export interface OxlintContext {
 
 export type CreateESLintOptions = ESLint.Options
 
+export interface OxlintOutputLabel {
+  span: {
+    offset: number
+    length: number
+  }
+}
+
 export interface OxlintOutput {
   message: string
   code: string
@@ -51,6 +60,7 @@ export interface OxlintOutput {
   causes: string[]
   filename: string
   related: string[]
+  labels: OxlintOutputLabel[]
 }
 
 export interface LintResult {
@@ -59,4 +69,6 @@ export interface LintResult {
   message: string
   linter: 'oxlint' | 'eslint'
   ruleId: string
+  line: number
+  column: number
 }

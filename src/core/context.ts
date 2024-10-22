@@ -1,47 +1,17 @@
+import type { FSWatcher } from 'chokidar'
 import type { LintResult, OxlintContext, OxlintOptions, PackageManagerName } from './types'
 import { join, relative, resolve } from 'node:path'
 import process from 'node:process'
-import chokidar, { type FSWatcher } from 'chokidar'
-import { consola } from 'consola'
-import { colors } from 'consola/utils'
-import fg from 'fast-glob'
 import { isPackageExists } from 'local-pkg'
 import { detectPackageManager } from 'nypm'
 import { version } from '../../package.json'
+import { createLogger } from './logger'
 import { resolveOptions } from './options'
 import { runLintCommand as _runLintCommand } from './oxlint'
-import { generateFileHash, normalizeIgnores } from './utils'
-
-let watcher: FSWatcher
-
-function setupWatcher(paths: string[], ctx: OxlintContext) {
-  watcher = chokidar.watch(fg.sync(paths), {
-    ignored: id => normalizeIgnores(ctx.options.excludes).some(regex => regex.test(id)),
-    persistent: true,
-  })
-
-  watcher.on('change', (id) => {
-    if (ctx.getHoldingStatus())
-      return
-    const hash = generateFileHash(id)
-    if (hash === ctx.getFileHash(id))
-      return
-    ctx.runLintCommand(id, ctx)
-    ctx.setFileHash(id, hash)
-  })
-
-  watcher.on('add', (id) => {
-    ctx.runLintCommand(id, ctx)
-  })
-
-  watcher.on('unlink', (id) => {
-    ctx.setFileHash(id, undefined)
-    ctx.resetLintResults(id)
-    ctx.outputLintResults()
-  })
-}
+import { setupWatcher } from './watcher'
 
 export function createOxlint(rawOptions: Partial<OxlintOptions> = {}) {
+  let watcher: FSWatcher | undefined
   const options = resolveOptions(rawOptions)
   const ctx = createInternalContext(options)
 
@@ -52,13 +22,16 @@ export function createOxlint(rawOptions: Partial<OxlintOptions> = {}) {
   }
 
   function setup() {
-    return options.watch ? setupWatcher(paths, ctx) : runLintCommandWithContext(paths)
+    ctx.logger.printBanner()
+    if (!options.watch)
+      return runLintCommandWithContext(paths)
+    watcher = setupWatcher(paths, ctx)
   }
 
   return {
     options,
-    watcher,
     setup,
+    watcher,
     runLintCommand: runLintCommandWithContext,
     getHoldingStatus: ctx.getHoldingStatus,
     getFileHash: ctx.getFileHash,
@@ -73,6 +46,7 @@ export function createInternalContext(options: OxlintOptions): OxlintContext {
   let hasESLint: boolean | null = null
   let hasOxlint: boolean | null = null
   let packageManagerName: PackageManagerName | undefined = options.packageManager
+  const logger = createLogger()
   const lintResultRecord: Record<string, LintResult[]> = {}
 
   const fileHashRecord: Record<string, string> = {}
@@ -123,20 +97,7 @@ export function createInternalContext(options: OxlintOptions): OxlintContext {
     if (isEmpty)
       return
 
-    process.stdout.write('\r\n')
-    Object.entries(lintResultRecord).forEach(([filename, results]) => {
-      if (results.length) {
-        consola.warn(`[unplugin-oxlint] ${colors.blue(filename)}`)
-        results.forEach(({ message, severity, linter, ruleId }) => {
-          const suffix = ` (${colors.gray(linter)}: ${colors.blue(ruleId)})\n`
-          if (severity === 'error')
-            process.stdout.write(`       ${colors.red('✘')} ${colors.red(message)}${suffix}`)
-          if (severity === 'warning')
-            process.stdout.write(`       ${colors.yellow('⚠')} ${colors.yellow(message)}${suffix}`)
-        })
-      }
-    })
-    process.stdout.write('\r\n\r\n')
+    logger.printLintResults(lintResultRecord)
   }
 
   async function detectDependencies() {
@@ -166,6 +127,7 @@ export function createInternalContext(options: OxlintOptions): OxlintContext {
   return {
     version,
     options,
+    logger,
     getPackageManager,
     runLintCommand,
     getHoldingStatus,
@@ -179,8 +141,3 @@ export function createInternalContext(options: OxlintOptions): OxlintContext {
     isExist,
   }
 }
-
-process.on('exit', () => {
-  if (watcher)
-    watcher.close?.()
-})
