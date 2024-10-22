@@ -3,6 +3,7 @@ import { defu } from 'defu'
 import { destr } from 'destr'
 import { ESLint } from 'eslint'
 import { execa } from 'execa'
+import fse from 'fs-extra'
 import { oxlintRE } from './regexp'
 import { createESLint, isString, normalizeAbsolutePath } from './utils'
 
@@ -43,6 +44,7 @@ function detectOxlintMessage(message: string) {
 
 export async function runOxlintCommand(ids: string | string[], ctx: OxlintContext) {
   const options = ctx.options
+  const contentRecord: Record<string, string> = {}
 
   const paths = normalizeAbsolutePath(ids, options.rootDir)
 
@@ -71,7 +73,18 @@ export async function runOxlintCommand(ids: string | string[], ctx: OxlintContex
   const outputs = destr<OxlintOutput[]>(format(stdout))
 
   if (Array.isArray(outputs)) {
-    outputs.forEach(({ code, filename, severity, message }) => {
+    for await (const { filename } of outputs) {
+      if (contentRecord[filename])
+        continue
+      const c = await fse.readFile(filename, { encoding: 'utf8' })
+      contentRecord[filename] = c
+    }
+
+    outputs.forEach(({ code, filename, severity, message, labels }) => {
+      const [{ span }] = labels
+      const lines = contentRecord[filename].slice(0, span.offset).split('\n')
+      const line = lines.length
+      const column = lines[lines.length - 1].length + 1
       const { content } = detectOxlintMessage(message)
       const ruleId = code.match(/\(([^)]+)\)/)?.[1] ?? ''
       const result: LintResult = {
@@ -80,6 +93,8 @@ export async function runOxlintCommand(ids: string | string[], ctx: OxlintContex
         severity,
         message: content,
         ruleId,
+        line,
+        column,
       }
       results.push(result)
       ctx.insertLintResult(filename, result)
@@ -112,7 +127,7 @@ export async function runESLintCommand(ids: string | string[], ctx: OxlintContex
   const results: LintResult[] = []
 
   outputs.forEach(({ filePath: filename, messages }) => {
-    messages.forEach(({ message, severity, ruleId }) => {
+    messages.forEach(({ message, severity, ruleId, line, column }) => {
       const ESLINT_SEVERITY = ['off', 'warning', 'error']
       const result: LintResult = {
         filename,
@@ -120,6 +135,8 @@ export async function runESLintCommand(ids: string | string[], ctx: OxlintContex
         severity: ESLINT_SEVERITY[severity] as any,
         ruleId: ruleId ?? '',
         message,
+        line,
+        column,
       }
       results.push(result)
       ctx.insertLintResult(filename, result)
