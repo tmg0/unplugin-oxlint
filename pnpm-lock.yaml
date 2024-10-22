@@ -50,13 +50,13 @@ importers:
     devDependencies:
       '@antfu/eslint-config':
         specifier: ^3.8.0
-        version: 3.8.0(@typescript-eslint/utils@8.10.0(eslint@9.13.0(jiti@2.3.3))(typescript@5.6.3))(@vue/compiler-sfc@3.5.12)(eslint@9.13.0(jiti@2.3.3))(typescript@5.6.3)(vitest@2.1.3(@types/node@20.16.13))
+        version: 3.8.0(@typescript-eslint/utils@8.10.0(eslint@9.13.0(jiti@2.3.3))(typescript@5.6.3))(@vue/compiler-sfc@3.5.12)(eslint@9.13.0(jiti@2.3.3))(typescript@5.6.3)(vitest@2.1.3(@types/node@20.16.14))
       '@types/fs-extra':
         specifier: ^11.0.4
         version: 11.0.4
       '@types/node':
-        specifier: ^20.16.13
-        version: 20.16.13
+        specifier: ^20.16.14
+        version: 20.16.14
       esbuild:
         specifier: ^0.24.0
         version: 0.24.0
@@ -64,8 +64,8 @@ importers:
         specifier: ^0.10.1
         version: 0.10.1
       oxlint:
-        specifier: ^0.10.0
-        version: 0.10.1
+        specifier: ^0.10.2
+        version: 0.10.2
       tsup:
         specifier: ^8.3.0
         version: 8.3.0(jiti@2.3.3)(postcss@8.4.47)(typescript@5.6.3)
@@ -74,7 +74,7 @@ importers:
         version: 5.6.3
       vitest:
         specifier: ^2.1.3
-        version: 2.1.3(@types/node@20.16.13)
+        version: 2.1.3(@types/node@20.16.14)
 
   playground/tsup:
     devDependencies:
@@ -82,8 +82,8 @@ importers:
         specifier: ^9.13.0
         version: 9.13.0(jiti@2.3.3)
       oxlint:
-        specifier: ^0.10.0
-        version: 0.10.1
+        specifier: ^0.10.2
+        version: 0.10.2
       tsup:
         specifier: ^8.3.0
         version: 8.3.0(jiti@2.3.3)(postcss@8.4.47)(typescript@5.6.3)
@@ -99,19 +99,19 @@ importers:
     devDependencies:
       '@vitejs/plugin-vue':
         specifier: ^5.1.4
-        version: 5.1.4(vite@5.4.9(@types/node@20.16.13))(vue@3.5.12(typescript@5.6.3))
+        version: 5.1.4(vite@5.4.9(@types/node@20.16.14))(vue@3.5.12(typescript@5.6.3))
       eslint:
         specifier: ^9.13.0
         version: 9.13.0(jiti@2.3.3)
       oxlint:
-        specifier: ^0.10.0
-        version: 0.10.1
+        specifier: ^0.10.2
+        version: 0.10.2
       typescript:
         specifier: ^5.6.3
         version: 5.6.3
       vite:
         specifier: ^5.4.9
-        version: 5.4.9(@types/node@20.16.13)
+        version: 5.4.9(@types/node@20.16.14)
       vue-tsc:
         specifier: ^2.1.6
         version: 2.1.6(typescript@5.6.3)
@@ -744,43 +744,43 @@ packages:
     resolution: {integrity: sha512-oGB+UxlgWcgQkgwo8GcEGwemoTFt3FIO9ababBmaGwXIoBKZ+GTy0pP185beGg7Llih/NSHSV2XAs1lnznocSg==}
     engines: {node: '>= 8'}
 
-  '@oxlint/darwin-arm64@0.10.1':
-    resolution: {integrity: sha512-C2g5Hq2Ev6BU7zpGmfSNsl7r6UH7vUi2pYm56VMtq1/6N/dnuaU8+sKJfKWq66EG+rz3Q2pW0+YUhTsepnLwjw==}
+  '@oxlint/darwin-arm64@0.10.2':
+    resolution: {integrity: sha512-qFUOPUAu5Z8d/RUYTWKS5rekE5R9M4FyfFn2DbQyH8wg/ufLaYKpquzFKeFPvwNs0NU9B7Iro28Ty+YQCdhuxA==}
     cpu: [arm64]
     os: [darwin]
 
-  '@oxlint/darwin-x64@0.10.1':
-    resolution: {integrity: sha512-mN/1WnajvV2TOaVPB91ohzLURceDsjB0oR+4JcgDKfsdrru90JRvcBpFbvwKCPzneGc/V7foYBkaBXr6/j2VSQ==}
+  '@oxlint/darwin-x64@0.10.2':
+    resolution: {integrity: sha512-v4VzIwCrB4jCkejnj9bjP0o+CjxMF1j6GltQQQQry2ySDFTNV9Etu6mvi6990mhh+bND4f9VyJ/KbRl+RZBPJA==}
     cpu: [x64]
     os: [darwin]
 
-  '@oxlint/linux-arm64-gnu@0.10.1':
-    resolution: {integrity: sha512-uIjJf9i3cPOSAa3jcjzl7ZqWTGitEhGiFp84nFG/O123HPv/E+gP1dlXqf7512CQDciVzrVoBZTf15Ynpy3S9g==}
+  '@oxlint/linux-arm64-gnu@0.10.2':
+    resolution: {integrity: sha512-7ACUw/H3a9EntQ1fK9K0V3Sqk9y2dD0lvNVo9iWtWL76OAJ2RlGuMTNROBMd/5mac79/zXJu4mlzd3cUeDa9mA==}
     cpu: [arm64]
     os: [linux]
 
-  '@oxlint/linux-arm64-musl@0.10.1':
-    resolution: {integrity: sha512-OV9iMyXIwrH3Kp+AQhCgW02rwvzFlo1CNZ0IDNz9vEbGy7mwI8Tnyg2lWot3pD7Pv59JV9P6b7Czal8N8TszGQ==}
+  '@oxlint/linux-arm64-musl@0.10.2':
+    resolution: {integrity: sha512-FmTXpCFIIIxu516bRHbFb3FNKgwj2zIUeSx4Onklnlea9GgZt/QC9DS5hT06psAkjcWrvGV/LxFWs62qzO8xkA==}
     cpu: [arm64]
     os: [linux]
 
-  '@oxlint/linux-x64-gnu@0.10.1':
-    resolution: {integrity: sha512-kOvWuA9iiN6QaSncxIRRxSNNJaOOtSsVkvJJL5GMhFczl4Uv6HHqLw8x1R89YTUwkQa96ycQ/TNSdN8K8ARIEw==}
+  '@oxlint/linux-x64-gnu@0.10.2':
+    resolution: {integrity: sha512-NAJYpgivYM7EGqSTekjt6yeuVmqp8KSgaEcAdhRlEryYfoG67I1S39L62lpVwVzleNPMu9CUyBrlz5r+g2SSig==}
     cpu: [x64]
     os: [linux]
 
-  '@oxlint/linux-x64-musl@0.10.1':
-    resolution: {integrity: sha512-p2MEr8ipWlmnVuvjc8xRBs/PHR3uMzHLp70J/PInHD+ULPf40MW/D7yBtjXQVlCcSOlFLCmvJdHjiGaaWKfcEA==}
+  '@oxlint/linux-x64-musl@0.10.2':
+    resolution: {integrity: sha512-e4N0m8pz+CeL2tA0jh4pGk3BdMJbVgIEPlbOjQGk8daY10dVCzA1yWdkkzVh1d3aAOHo3c9mOXYq0ZQjyZfn1g==}
     cpu: [x64]
     os: [linux]
 
-  '@oxlint/win32-arm64@0.10.1':
-    resolution: {integrity: sha512-f6grRxe0zeMwpM45+in9DEdzH4Xu9magB3YFsXhGGZ7ki511ULlWhCXsSPfuv1EIbVc0GDzacFUK7CCdhIXQpg==}
+  '@oxlint/win32-arm64@0.10.2':
+    resolution: {integrity: sha512-LusTVOzTjztkEdXjQM8NqazyXE95yknpRl9DUJA8Ak6UXifEXxw9DbUNzrwaVfp/pkk0KAMab76JkPgwfmyavA==}
     cpu: [arm64]
     os: [win32]
 
-  '@oxlint/win32-x64@0.10.1':
-    resolution: {integrity: sha512-ocytlmlmDjkHi1BXGdnCGH0/jS3m+1RWFjWQz0bvVDmA60DEN8PyfvShQ3H5ks3k3CVpy1nVcM/E7T6i9xDHFg==}
+  '@oxlint/win32-x64@0.10.2':
+    resolution: {integrity: sha512-/f4heyBoG433OT3siQapyQ9LxIsZGHIQOtO/oWSzl9SAHOQ3MLA+8XOozatT+GWyUB9Y6q4RwJuNbxpdzjOkuA==}
     cpu: [x64]
     os: [win32]
 
@@ -909,8 +909,8 @@ packages:
   '@types/ms@0.7.34':
     resolution: {integrity: sha512-nG96G3Wp6acyAgJqGasjODb+acrI7KltPiRxzHPXnP3NgI28bpQDRv53olbqGXbfcgF5aiiHmO3xpwEpS5Ld9g==}
 
-  '@types/node@20.16.13':
-    resolution: {integrity: sha512-GjQ7im10B0labo8ZGXDGROUl9k0BNyDgzfGpb4g/cl+4yYDWVKcozANF4FGr4/p0O/rAkQClM6Wiwkije++1Tg==}
+  '@types/node@20.16.14':
+    resolution: {integrity: sha512-vtgGzjxLF7QT88qRHtXMzCWpAAmwonE7fwgVjFtXosUva2oSpnIEc3gNO9P7uIfOxKnii2f79/xtOnfreYtDaA==}
 
   '@types/normalize-package-data@2.4.4':
     resolution: {integrity: sha512-37i+OaWTh9qeK4LSHPsyRC7NahnGotNuZvjLSgcPzblpHB3rrCJxAOgI5gCdKm7coonsaX1Of0ILiTcnZjbfxA==}
@@ -2196,8 +2196,8 @@ packages:
     resolution: {integrity: sha512-JjCoypp+jKn1ttEFExxhetCKeJt9zhAgAve5FXHixTvFDW/5aEktX9bufBKLRRMdU7bNtpLfcGu94B3cdEJgjg==}
     engines: {node: '>= 0.8.0'}
 
-  oxlint@0.10.1:
-    resolution: {integrity: sha512-b7/cFNeY6A28fKMGokcunbZ/9EN6msunYeuPDWZIvxm2jRwitxX4+Zpw4kx1wt8vFxihf72v15kNNDWG5KZ09A==}
+  oxlint@0.10.2:
+    resolution: {integrity: sha512-/8AU6/4e5UwcF0UMM4U3azFJ04unWZMR6Q+o6efXZaLz7uk0+3FO+JU8zX8XbMOaLDQs/FnQMhlPGvsH1CUiyA==}
     engines: {node: '>=14.*'}
     hasBin: true
 
@@ -2854,7 +2854,7 @@ snapshots:
 
   '@aashutoshrathi/word-wrap@1.2.6': {}
 
-  '@antfu/eslint-config@3.8.0(@typescript-eslint/utils@8.10.0(eslint@9.13.0(jiti@2.3.3))(typescript@5.6.3))(@vue/compiler-sfc@3.5.12)(eslint@9.13.0(jiti@2.3.3))(typescript@5.6.3)(vitest@2.1.3(@types/node@20.16.13))':
+  '@antfu/eslint-config@3.8.0(@typescript-eslint/utils@8.10.0(eslint@9.13.0(jiti@2.3.3))(typescript@5.6.3))(@vue/compiler-sfc@3.5.12)(eslint@9.13.0(jiti@2.3.3))(typescript@5.6.3)(vitest@2.1.3(@types/node@20.16.14))':
     dependencies:
       '@antfu/install-pkg': 0.4.1
       '@clack/prompts': 0.7.0
@@ -2863,7 +2863,7 @@ snapshots:
       '@stylistic/eslint-plugin': 2.9.0(eslint@9.13.0(jiti@2.3.3))(typescript@5.6.3)
       '@typescript-eslint/eslint-plugin': 8.10.0(@typescript-eslint/parser@8.10.0(eslint@9.13.0(jiti@2.3.3))(typescript@5.6.3))(eslint@9.13.0(jiti@2.3.3))(typescript@5.6.3)
       '@typescript-eslint/parser': 8.10.0(eslint@9.13.0(jiti@2.3.3))(typescript@5.6.3)
-      '@vitest/eslint-plugin': 1.1.7(@typescript-eslint/utils@8.10.0(eslint@9.13.0(jiti@2.3.3))(typescript@5.6.3))(eslint@9.13.0(jiti@2.3.3))(typescript@5.6.3)(vitest@2.1.3(@types/node@20.16.13))
+      '@vitest/eslint-plugin': 1.1.7(@typescript-eslint/utils@8.10.0(eslint@9.13.0(jiti@2.3.3))(typescript@5.6.3))(eslint@9.13.0(jiti@2.3.3))(typescript@5.6.3)(vitest@2.1.3(@types/node@20.16.14))
       eslint: 9.13.0(jiti@2.3.3)
       eslint-config-flat-gitignore: 0.3.0(eslint@9.13.0(jiti@2.3.3))
       eslint-flat-config-utils: 0.4.0
@@ -3276,28 +3276,28 @@ snapshots:
       '@nodelib/fs.scandir': 2.1.5
       fastq: 1.17.1
 
-  '@oxlint/darwin-arm64@0.10.1':
+  '@oxlint/darwin-arm64@0.10.2':
     optional: true
 
-  '@oxlint/darwin-x64@0.10.1':
+  '@oxlint/darwin-x64@0.10.2':
     optional: true
 
-  '@oxlint/linux-arm64-gnu@0.10.1':
+  '@oxlint/linux-arm64-gnu@0.10.2':
     optional: true
 
-  '@oxlint/linux-arm64-musl@0.10.1':
+  '@oxlint/linux-arm64-musl@0.10.2':
     optional: true
 
-  '@oxlint/linux-x64-gnu@0.10.1':
+  '@oxlint/linux-x64-gnu@0.10.2':
     optional: true
 
-  '@oxlint/linux-x64-musl@0.10.1':
+  '@oxlint/linux-x64-musl@0.10.2':
     optional: true
 
-  '@oxlint/win32-arm64@0.10.1':
+  '@oxlint/win32-arm64@0.10.2':
     optional: true
 
-  '@oxlint/win32-x64@0.10.1':
+  '@oxlint/win32-x64@0.10.2':
     optional: true
 
   '@pkgjs/parseargs@0.11.0':
@@ -3380,13 +3380,13 @@ snapshots:
   '@types/fs-extra@11.0.4':
     dependencies:
       '@types/jsonfile': 6.1.4
-      '@types/node': 20.16.13
+      '@types/node': 20.16.14
 
   '@types/json-schema@7.0.15': {}
 
   '@types/jsonfile@6.1.4':
     dependencies:
-      '@types/node': 20.16.13
+      '@types/node': 20.16.14
 
   '@types/mdast@4.0.4':
     dependencies:
@@ -3394,7 +3394,7 @@ snapshots:
 
   '@types/ms@0.7.34': {}
 
-  '@types/node@20.16.13':
+  '@types/node@20.16.14':
     dependencies:
       undici-types: 6.19.8
 
@@ -3521,18 +3521,18 @@ snapshots:
       '@typescript-eslint/types': 8.6.0
       eslint-visitor-keys: 3.4.3
 
-  '@vitejs/plugin-vue@5.1.4(vite@5.4.9(@types/node@20.16.13))(vue@3.5.12(typescript@5.6.3))':
+  '@vitejs/plugin-vue@5.1.4(vite@5.4.9(@types/node@20.16.14))(vue@3.5.12(typescript@5.6.3))':
     dependencies:
-      vite: 5.4.9(@types/node@20.16.13)
+      vite: 5.4.9(@types/node@20.16.14)
       vue: 3.5.12(typescript@5.6.3)
 
-  '@vitest/eslint-plugin@1.1.7(@typescript-eslint/utils@8.10.0(eslint@9.13.0(jiti@2.3.3))(typescript@5.6.3))(eslint@9.13.0(jiti@2.3.3))(typescript@5.6.3)(vitest@2.1.3(@types/node@20.16.13))':
+  '@vitest/eslint-plugin@1.1.7(@typescript-eslint/utils@8.10.0(eslint@9.13.0(jiti@2.3.3))(typescript@5.6.3))(eslint@9.13.0(jiti@2.3.3))(typescript@5.6.3)(vitest@2.1.3(@types/node@20.16.14))':
     dependencies:
       '@typescript-eslint/utils': 8.10.0(eslint@9.13.0(jiti@2.3.3))(typescript@5.6.3)
       eslint: 9.13.0(jiti@2.3.3)
     optionalDependencies:
       typescript: 5.6.3
-      vitest: 2.1.3(@types/node@20.16.13)
+      vitest: 2.1.3(@types/node@20.16.14)
 
   '@vitest/expect@2.1.3':
     dependencies:
@@ -3541,13 +3541,13 @@ snapshots:
       chai: 5.1.1
       tinyrainbow: 1.2.0
 
-  '@vitest/mocker@2.1.3(@vitest/spy@2.1.3)(vite@5.4.9(@types/node@20.16.13))':
+  '@vitest/mocker@2.1.3(@vitest/spy@2.1.3)(vite@5.4.9(@types/node@20.16.14))':
     dependencies:
       '@vitest/spy': 2.1.3
       estree-walker: 3.0.3
       magic-string: 0.30.11
     optionalDependencies:
-      vite: 5.4.9(@types/node@20.16.13)
+      vite: 5.4.9(@types/node@20.16.14)
 
   '@vitest/pretty-format@2.1.3':
     dependencies:
@@ -5010,16 +5010,16 @@ snapshots:
       prelude-ls: 1.2.1
       type-check: 0.4.0
 
-  oxlint@0.10.1:
+  oxlint@0.10.2:
     optionalDependencies:
-      '@oxlint/darwin-arm64': 0.10.1
-      '@oxlint/darwin-x64': 0.10.1
-      '@oxlint/linux-arm64-gnu': 0.10.1
-      '@oxlint/linux-arm64-musl': 0.10.1
-      '@oxlint/linux-x64-gnu': 0.10.1
-      '@oxlint/linux-x64-musl': 0.10.1
-      '@oxlint/win32-arm64': 0.10.1
-      '@oxlint/win32-x64': 0.10.1
+      '@oxlint/darwin-arm64': 0.10.2
+      '@oxlint/darwin-x64': 0.10.2
+      '@oxlint/linux-arm64-gnu': 0.10.2
+      '@oxlint/linux-arm64-musl': 0.10.2
+      '@oxlint/linux-x64-gnu': 0.10.2
+      '@oxlint/linux-x64-musl': 0.10.2
+      '@oxlint/win32-arm64': 0.10.2
+      '@oxlint/win32-x64': 0.10.2
 
   p-limit@2.3.0:
     dependencies:
@@ -5471,12 +5471,12 @@ snapshots:
       spdx-correct: 3.2.0
       spdx-expression-parse: 3.0.1
 
-  vite-node@2.1.3(@types/node@20.16.13):
+  vite-node@2.1.3(@types/node@20.16.14):
     dependencies:
       cac: 6.7.14
       debug: 4.3.7
       pathe: 1.1.2
-      vite: 5.4.9(@types/node@20.16.13)
+      vite: 5.4.9(@types/node@20.16.14)
     transitivePeerDependencies:
       - '@types/node'
       - less
@@ -5488,19 +5488,19 @@ snapshots:
       - supports-color
       - terser
 
-  vite@5.4.9(@types/node@20.16.13):
+  vite@5.4.9(@types/node@20.16.14):
     dependencies:
       esbuild: 0.21.5
       postcss: 8.4.47
       rollup: 4.22.4
     optionalDependencies:
-      '@types/node': 20.16.13
+      '@types/node': 20.16.14
       fsevents: 2.3.3
 
-  vitest@2.1.3(@types/node@20.16.13):
+  vitest@2.1.3(@types/node@20.16.14):
     dependencies:
       '@vitest/expect': 2.1.3
-      '@vitest/mocker': 2.1.3(@vitest/spy@2.1.3)(vite@5.4.9(@types/node@20.16.13))
+      '@vitest/mocker': 2.1.3(@vitest/spy@2.1.3)(vite@5.4.9(@types/node@20.16.14))
       '@vitest/pretty-format': 2.1.3
       '@vitest/runner': 2.1.3
       '@vitest/snapshot': 2.1.3
@@ -5515,11 +5515,11 @@ snapshots:
       tinyexec: 0.3.0
       tinypool: 1.0.1
       tinyrainbow: 1.2.0
-      vite: 5.4.9(@types/node@20.16.13)
-      vite-node: 2.1.3(@types/node@20.16.13)
+      vite: 5.4.9(@types/node@20.16.14)
+      vite-node: 2.1.3(@types/node@20.16.14)
       why-is-node-running: 2.3.0
     optionalDependencies:
-      '@types/node': 20.16.13
+      '@types/node': 20.16.14
     transitivePeerDependencies:
       - less
       - lightningcss

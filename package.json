@@ -1,7 +1,7 @@
 {
   "name": "unplugin-oxlint",
   "type": "module",
-  "version": "0.7.0",
+  "version": "0.7.1",
   "description": "A universal bundler plugin for integrating the Oxlint linter into your project.",
   "author": "tmg0",
   "license": "MIT",
@@ -99,10 +99,10 @@
   "devDependencies": {
     "@antfu/eslint-config": "^3.8.0",
     "@types/fs-extra": "^11.0.4",
-    "@types/node": "^20.16.13",
+    "@types/node": "^20.16.14",
     "esbuild": "^0.24.0",
     "eslint-plugin-oxlint": "^0.10.1",
-    "oxlint": "^0.10.0",
+    "oxlint": "^0.10.2",
     "tsup": "^8.3.0",
     "typescript": "^5.6.3",
     "vitest": "^2.1.3"
