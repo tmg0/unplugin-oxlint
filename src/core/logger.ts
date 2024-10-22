@@ -19,7 +19,7 @@ export function createLogger(logger = defaultLogger) {
     logger.log('\r\n')
     Object.entries(records).forEach(([filename, results]) => {
       if (results.length) {
-        logger.log(colors.underline(join(process.cwd(), filename)))
+        logger.log(colors.blue(colors.underline(join(process.cwd(), filename))))
         logger.log('\r\n\r\n')
         results.forEach(({ message, severity, ruleId, line, column }) => {
           const suffix = colors.gray(`(${ruleId})`)

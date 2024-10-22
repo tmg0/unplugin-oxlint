@@ -18,7 +18,7 @@
 
 ⚡ Only lint the files that have changed for better performance by [chokidar](https://github.com/paulmillr/chokidar).
 
-![screenshot](./assets/screenshot.webp)
+![screenshot](./assets/screenshot.png)
 
 ## Installation
 
