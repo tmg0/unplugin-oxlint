@@ -10,6 +10,7 @@ export function setupWatcher(paths: string[], ctx: OxlintContext) {
   watcher = chokidar.watch(fg.sync(paths), {
     ignored: id => normalizeIgnores(ctx.options.excludes).some(regex => regex.test(id)),
     persistent: true,
+    ignoreInitial: true,
   })
 
   watcher.on('change', (id) => {
