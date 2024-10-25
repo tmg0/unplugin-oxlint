@@ -11,16 +11,14 @@ const defaultLogger = {
 }
 
 export function createLogger(logger = defaultLogger) {
-  function printBanner() {
+  function printLintResults(records: Record<string, LintResult[]>) {
+    logger.log('\r\n')
     logger.log(colors.bgCyan(colors.black(` v${version} `)))
     logger.log(' unplugin-oxlint ')
-    logger.log('\r\n\r\n')
-  }
-
-  function printLintResults(records: Record<string, LintResult[]>) {
     logger.log('\r\n')
     Object.entries(records).forEach(([filename, results]) => {
       if (results.length) {
+        logger.log('\r\n')
         logger.log(colors.blue(colors.underline(join(process.cwd(), filename))))
         logger.log('\r\n\r\n')
         results.forEach(({ message, severity, ruleId, line, column }) => {
@@ -31,17 +29,16 @@ export function createLogger(logger = defaultLogger) {
             prefix += Array.from({ length: prefixPlaceholder }).join(' ')
           prefix = colors.gray(prefix)
           if (severity === 'error')
-            logger.log(`  ${prefix}${colors.red('✘')} ${colors.red(message)} ${suffix}\n`)
+            logger.log(`  ${prefix}${colors.red('✘')} ${colors.red(message)} ${suffix}\r\n`)
           if (severity === 'warning')
-            logger.log(`  ${prefix}${colors.yellow('⚠')} ${colors.yellow(message)} ${suffix}\n`)
+            logger.log(`  ${prefix}${colors.yellow('⚠')} ${colors.yellow(message)} ${suffix}\r\n`)
         })
       }
     })
-    logger.log('\r\n\r\n')
+    logger.log('\r\n')
   }
 
   return {
-    printBanner,
     printLintResults,
   }
 }

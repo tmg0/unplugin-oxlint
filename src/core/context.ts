@@ -22,10 +22,9 @@ export function createOxlint(rawOptions: Partial<OxlintOptions> = {}) {
   }
 
   function setup() {
-    ctx.logger.printBanner()
-    if (!options.watch)
-      return runLintCommandWithContext(paths)
-    watcher = setupWatcher(paths, ctx)
+    if (options.watch)
+      watcher = setupWatcher(paths, ctx)
+    return runLintCommandWithContext(paths)
   }
 
   return {
