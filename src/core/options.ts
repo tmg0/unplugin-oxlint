@@ -3,6 +3,7 @@ import { defu } from 'defu'
 
 export const DEFAULT_OXLINT_OPTIONS: Partial<OxlintOptions> = {
   rootDir: '.',
+  glob: false,
   deny: [],
   allow: [],
   fix: false,
@@ -12,7 +13,7 @@ export const DEFAULT_OXLINT_OPTIONS: Partial<OxlintOptions> = {
   quiet: false,
   denyWarnings: false,
   watch: false,
-  includes: '**/*.{js,ts,jsx,tsx,vue}',
+  includes: '.',
   excludes: [/[\\/]node_modules[\\/]/, /[\\/]\.git[\\/]/],
 }
 

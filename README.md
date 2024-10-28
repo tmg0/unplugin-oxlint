@@ -104,7 +104,7 @@ Tips: The Node.js API supports most `options` except for `watch`.
 // scripts/lint.js
 import { lint } from 'unplugin-oxlint'
 
-lint({ includes: 'src/**/*.ts' })
+lint({ includes: 'src/**/*.ts', glob: true })
 ```
 
 If you're looking for a way to use `lint` in `scripts`.
@@ -183,9 +183,27 @@ This plugin accepts most options of [vite-plugin-oxlint](https://github.com/52-e
 ### `options.includes`
 
 - Type: `string | string[]`
-- Default: `'**/*.{js,ts,jsx,tsx,vue}'`
+- Default: `'.'`
 
-Paths to files, dirs to be watched by glob patterns
+Paths to files or dirs to be watched, for more details see: [chokidar v4](https://github.com/paulmillr/chokidar?tab=readme-ov-file#upgrading)
+
+And for those who wants to use glob pattern, `unplugin-oxlint` also provide `glob` options.
+
+### `options.glob`
+
+- Type: `boolean`
+- Default: `false`
+
+Watched by glob patterns
+
+Example:
+
+```ts
+Oxlint({
+  includes: ['src/**/*.ts'],
+  glob: true,
+}),
+```
 
 ### `options.excludes`
 

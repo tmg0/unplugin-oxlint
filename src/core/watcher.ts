@@ -7,7 +7,7 @@ import { generateFileHash, normalizeIgnores } from './utils'
 let watcher: FSWatcher
 
 export function setupWatcher(paths: string[], ctx: OxlintContext) {
-  watcher = chokidar.watch(fg.sync(paths), {
+  watcher = chokidar.watch(ctx.options.glob ? fg.sync(paths) : paths, {
     ignored: id => normalizeIgnores(ctx.options.excludes).some(regex => regex.test(id)),
     persistent: true,
     ignoreInitial: true,
