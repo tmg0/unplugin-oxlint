@@ -13,7 +13,7 @@ export const DEFAULT_OXLINT_OPTIONS: Partial<OxlintOptions> = {
   quiet: false,
   denyWarnings: false,
   watch: false,
-  includes: '**/*.{js,ts,jsx,tsx,vue}',
+  includes: '.',
   excludes: [/[\\/]node_modules[\\/]/, /[\\/]\.git[\\/]/],
 }
 
