@@ -4,6 +4,7 @@ import type { createLogger } from './logger'
 
 export interface OxlintOptions {
   rootDir: string
+  glob: boolean
   includes: string | string[]
   excludes: RegExp[]
   deny: string[]
