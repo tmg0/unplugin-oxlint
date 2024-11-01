@@ -98,7 +98,7 @@
   "devDependencies": {
     "@antfu/eslint-config": "^3.8.0",
     "@types/fs-extra": "^11.0.4",
-    "@types/node": "^20.17.1",
+    "@types/node": "^22.0.0",
     "esbuild": "^0.24.0",
     "eslint-plugin-oxlint": "^0.10.1",
     "oxlint": "^0.10.3",
