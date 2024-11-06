@@ -6,8 +6,8 @@
     "lint": "node scripts/lint.js"
   },
   "devDependencies": {
-    "eslint": "^9.13.0",
-    "oxlint": "^0.10.3",
+    "eslint": "^9.14.0",
+    "oxlint": "^0.11.0",
     "tsup": "^8.3.5",
     "unplugin-oxlint": "workspace:*"
   }
