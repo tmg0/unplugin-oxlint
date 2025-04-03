@@ -39,8 +39,8 @@ importers:
         specifier: ^0.3.12
         version: 0.3.12
       ohash:
-        specifier: ^1.1.6
-        version: 1.1.6
+        specifier: ^2.0.0
+        version: 2.0.11
       unplugin:
         specifier: ^1.16.1
         version: 1.16.1
@@ -2374,8 +2374,8 @@ packages:
     resolution: {integrity: sha512-rJgTQnkUnH1sFw8yT6VSU3zD3sWmu6sZhIseY8VX+GRu3P6F7Fu+JNDoXfklElbLJSnc3FUQHVe4cU5hj+BcUg==}
     engines: {node: '>=0.10.0'}
 
-  ohash@1.1.6:
-    resolution: {integrity: sha512-TBu7PtV8YkAZn0tSxobKY2n2aAQva936lhRrj6957aDaCf9IEtqsKbgMzXE/F/sjqYOwmrukeORHNLe5glk7Cg==}
+  ohash@2.0.11:
+    resolution: {integrity: sha512-RdR9FQrFwNBNXAr4GixM8YaRZRJ5PUWbKYbE5eOsrwAjJW0q2REGcf79oYPsLyskQCZG1PLN+S/K1V00joZAoQ==}
 
   onetime@6.0.0:
     resolution: {integrity: sha512-1FlR+gjXK7X+AsAHso35MnyN5KqGwJRi/31ft6x0M194ht7S+rWAvd7PHss9xSKMzE0asv1pyIHaJYq+BbacAQ==}
@@ -5427,7 +5427,7 @@ snapshots:
 
   object-assign@4.1.1: {}
 
-  ohash@1.1.6: {}
+  ohash@2.0.11: {}
 
   onetime@6.0.0:
     dependencies:

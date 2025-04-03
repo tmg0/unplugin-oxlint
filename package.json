@@ -92,7 +92,7 @@
     "fs-extra": "^11.3.0",
     "local-pkg": "^0.5.1",
     "nypm": "^0.3.12",
-    "ohash": "^1.1.6",
+    "ohash": "^2.0.0",
     "unplugin": "^1.16.1"
   },
   "devDependencies": {
