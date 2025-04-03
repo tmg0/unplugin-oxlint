@@ -1,6 +1,7 @@
+import type { FSWatcher } from 'chokidar'
 import type { OxlintContext } from './types'
 import process from 'node:process'
-import chokidar, { type FSWatcher } from 'chokidar'
+import chokidar from 'chokidar'
 import fg from 'fast-glob'
 import { generateFileHash, normalizeIgnores } from './utils'
 
