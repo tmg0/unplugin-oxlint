@@ -55,8 +55,8 @@ importers:
         specifier: ^22.14.0
         version: 22.14.0
       esbuild:
-        specifier: ^0.24.2
-        version: 0.24.2
+        specifier: ^0.25.0
+        version: 0.25.2
       eslint-plugin-oxlint:
         specifier: ^0.15.15
         version: 0.15.15
