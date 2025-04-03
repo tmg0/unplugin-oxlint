@@ -7,7 +7,7 @@ import fse from 'fs-extra'
 import { oxlintRE } from './regexp'
 import { createESLint, isString, normalizeAbsolutePath } from './utils'
 
-const agents = {
+const agents: Record<string, string[]> = {
   bun: ['bunx'],
   npm: ['npx'],
   yarn: ['yarn', 'dlx'],
@@ -15,7 +15,8 @@ const agents = {
 }
 
 async function runNpxCommand(command: NpxCommand, args: string[], ctx: OxlintContext) {
-  const [agent, dlx] = agents[(await ctx.getPackageManager()) ?? 'npm']
+  const pkgm = (await ctx.getPackageManager()) ?? 'npm'
+  const [agent, dlx] = agents[pkgm]
   const params = [dlx, command, ...args].filter(Boolean)
   return execa(agent, params, { reject: false }) as unknown as Promise<{ stdout: string }>
 }
