@@ -100,7 +100,7 @@
     "@types/fs-extra": "^11.0.4",
     "@types/node": "^22.15.31",
     "esbuild": "^0.25.5",
-    "eslint-plugin-oxlint": "^0.16.12",
+    "eslint-plugin-oxlint": "^0.18.0",
     "oxlint": "^0.16.12",
     "tsdown": "^0.12.7",
     "typescript": "^5.8.3",
