@@ -55,13 +55,21 @@ export interface OxlintOutputLabel {
 }
 
 export interface OxlintOutput {
-  message: string
-  code: string
-  severity: 'warning' | 'error'
-  causes: string[]
-  filename: string
-  related: string[]
-  labels: OxlintOutputLabel[]
+  diagnostics: {
+    message: string
+    code: string
+    severity: 'warning' | 'error'
+    causes: string[]
+    url: string
+    help: string
+    filename: string
+    related: string[]
+    labels: OxlintOutputLabel[]
+  }[]
+  number_of_files: number
+  number_of_rules: number
+  threads_count: number
+  start_time: number
 }
 
 export interface LintResult {

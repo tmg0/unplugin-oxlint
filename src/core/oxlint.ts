@@ -71,36 +71,35 @@ export async function runOxlintCommand(ids: string | string[], ctx: OxlintContex
   }
 
   const results: LintResult[] = []
-  const outputs = destr<OxlintOutput[]>(format(stdout))
+  const outputs = destr<OxlintOutput | OxlintOutput['diagnostics']>(format(stdout))
+  const diagnostics = Array.isArray(outputs) ? outputs : outputs.diagnostics
 
-  if (Array.isArray(outputs)) {
-    for await (const { filename } of outputs) {
-      if (contentRecord[filename])
-        continue
-      const c = await fse.readFile(filename, { encoding: 'utf8' })
-      contentRecord[filename] = c
-    }
-
-    outputs.forEach(({ code, filename, severity, message, labels }) => {
-      const [{ span }] = labels
-      const lines = contentRecord[filename].slice(0, span.offset).split('\n')
-      const line = lines.length
-      const column = lines[lines.length - 1].length + 1
-      const { content } = detectOxlintMessage(message)
-      const ruleId = code.match(/\(([^)]+)\)/)?.[1] ?? ''
-      const result: LintResult = {
-        filename,
-        linter: 'oxlint',
-        severity,
-        message: content,
-        ruleId,
-        line,
-        column,
-      }
-      results.push(result)
-      ctx.insertLintResult(filename, result)
-    })
+  for await (const { filename } of diagnostics) {
+    if (contentRecord[filename])
+      continue
+    const c = await fse.readFile(filename, { encoding: 'utf8' })
+    contentRecord[filename] = c
   }
+
+  diagnostics.forEach(({ code, filename, severity, message, labels }) => {
+    const [{ span }] = labels
+    const lines = contentRecord[filename].slice(0, span.offset).split('\n')
+    const line = lines.length
+    const column = lines[lines.length - 1].length + 1
+    const { content } = detectOxlintMessage(message)
+    const ruleId = code.match(/\(([^)]+)\)/)?.[1] ?? ''
+    const result: LintResult = {
+      filename,
+      linter: 'oxlint',
+      severity,
+      message: content,
+      ruleId,
+      line,
+      column,
+    }
+    results.push(result)
+    ctx.insertLintResult(filename, result)
+  })
 
   return results
 }
