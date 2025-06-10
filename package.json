@@ -71,7 +71,7 @@
   ],
   "scripts": {
     "dev": "vitest dev",
-    "build": "tsup-node",
+    "build": "tsdown",
     "play:tsup": "cd playground/tsup && pnpm dev",
     "play:vite": "cd playground/vite && pnpm dev",
     "lint": "eslint src/**/*.ts",
@@ -85,25 +85,25 @@
     "chokidar": "^4.0.3",
     "consola": "^3.4.2",
     "defu": "^6.1.4",
-    "destr": "^2.0.3",
-    "eslint": "^9.23.0",
-    "execa": "^9.5.2",
+    "destr": "^2.0.5",
+    "eslint": "^9.28.0",
+    "execa": "^9.6.0",
     "fast-glob": "^3.3.3",
     "fs-extra": "^11.3.0",
     "local-pkg": "^1.1.1",
     "nypm": "^0.6.0",
     "ohash": "^2.0.11",
-    "unplugin": "^2.2.2"
+    "unplugin": "^2.3.5"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^4.11.0",
+    "@antfu/eslint-config": "^4.14.1",
     "@types/fs-extra": "^11.0.4",
-    "@types/node": "^22.14.0",
-    "esbuild": "^0.25.2",
-    "eslint-plugin-oxlint": "^0.16.4",
-    "oxlint": "^0.16.4",
-    "tsup": "^8.4.0",
-    "typescript": "^5.8.2",
-    "vitest": "^3.1.1"
+    "@types/node": "^22.15.31",
+    "esbuild": "^0.25.5",
+    "eslint-plugin-oxlint": "^0.16.12",
+    "oxlint": "^0.16.12",
+    "tsdown": "^0.12.7",
+    "typescript": "^5.8.3",
+    "vitest": "^3.2.3"
   }
 }
