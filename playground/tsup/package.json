@@ -7,7 +7,7 @@
   },
   "devDependencies": {
     "eslint": "^9.14.0",
-    "oxlint": "^0.16.0",
+    "oxlint": "^1.0.0",
     "tsup": "^8.3.5",
     "unplugin-oxlint": "workspace:*"
   }
