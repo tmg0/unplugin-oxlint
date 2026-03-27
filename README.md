@@ -202,7 +202,7 @@ Example:
 Oxlint({
   includes: ['src/**/*.ts'],
   glob: true,
-}),
+})
 ```
 
 ### `options.excludes`

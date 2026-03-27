@@ -1,7 +1,7 @@
 {
   "name": "unplugin-oxlint",
   "type": "module",
-  "version": "0.7.5",
+  "version": "0.8.0",
   "description": "A universal bundler plugin for integrating the Oxlint linter into your project.",
   "author": "tmg0",
   "license": "MIT",
@@ -25,33 +25,33 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.js",
+      "types": "./dist/index.d.mts",
+      "import": "./dist/index.mjs",
       "require": "./dist/index.cjs"
     },
     "./vite": {
-      "types": "./dist/vite.d.ts",
-      "import": "./dist/vite.js",
+      "types": "./dist/vite.d.mts",
+      "import": "./dist/vite.mjs",
       "require": "./dist/vite.cjs"
     },
     "./webpack": {
-      "types": "./dist/webpack.d.ts",
-      "import": "./dist/webpack.js",
+      "types": "./dist/webpack.d.mts",
+      "import": "./dist/webpack.mjs",
       "require": "./dist/webpack.cjs"
     },
     "./rollup": {
-      "types": "./dist/rollup.d.ts",
-      "import": "./dist/rollup.js",
+      "types": "./dist/rollup.d.mts",
+      "import": "./dist/rollup.mjs",
       "require": "./dist/rollup.cjs"
     },
     "./esbuild": {
-      "types": "./dist/esbuild.d.ts",
-      "import": "./dist/esbuild.js",
+      "types": "./dist/esbuild.d.mts",
+      "import": "./dist/esbuild.mjs",
       "require": "./dist/esbuild.cjs"
     },
     "./*": [
       "./*",
-      "./*.d.ts"
+      "./*.d.mts"
     ]
   },
   "main": "./dist/index.cjs",
