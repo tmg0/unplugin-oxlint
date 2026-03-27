@@ -82,28 +82,28 @@
     "oxlint": "^0.18.0 || ^1.0.0"
   },
   "dependencies": {
-    "chokidar": "^4.0.3",
+    "chokidar": "^5.0.0",
     "consola": "^3.4.2",
     "defu": "^6.1.4",
     "destr": "^2.0.5",
-    "eslint": "^9.28.0",
-    "execa": "^9.6.0",
+    "eslint": "^10.1.0",
+    "execa": "^9.6.1",
     "fast-glob": "^3.3.3",
-    "fs-extra": "^11.3.0",
-    "local-pkg": "^1.1.1",
-    "nypm": "^0.6.0",
+    "fs-extra": "^11.3.4",
+    "local-pkg": "^1.1.2",
+    "nypm": "^0.6.5",
     "ohash": "^2.0.11",
-    "unplugin": "^2.3.5"
+    "unplugin": "^3.0.0"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^4.14.1",
+    "@antfu/eslint-config": "^7.7.3",
     "@types/fs-extra": "^11.0.4",
-    "@types/node": "^22.15.31",
-    "esbuild": "^0.25.5",
-    "eslint-plugin-oxlint": "^1.0.0",
-    "oxlint": "^1.0.0",
-    "tsdown": "^0.12.7",
-    "typescript": "^5.8.3",
-    "vitest": "^3.2.3"
+    "@types/node": "^25.5.0",
+    "esbuild": "^0.27.4",
+    "eslint-plugin-oxlint": "^1.57.0",
+    "oxlint": "^1.57.0",
+    "tsdown": "^0.21.6",
+    "typescript": "^6.0.2",
+    "vitest": "^4.1.2"
   }
 }

@@ -1,4 +1,9 @@
-import type { LintResult, NpxCommand, OxlintContext, OxlintOutput } from './types'
+import type {
+  LintResult,
+  NpxCommand,
+  OxlintContext,
+  OxlintOutput,
+} from './types'
 import { defu } from 'defu'
 import { destr } from 'destr'
 import { ESLint } from 'eslint'
@@ -14,11 +19,17 @@ const agents: Record<string, string[]> = {
   pnpm: ['pnpm', 'dlx'],
 }
 
-async function runNpxCommand(command: NpxCommand, args: string[], ctx: OxlintContext) {
+async function runNpxCommand(
+  command: NpxCommand,
+  args: string[],
+  ctx: OxlintContext,
+) {
   const pkgm = (await ctx.getPackageManager()) ?? 'npm'
   const [agent, dlx] = agents[pkgm]
   const params = [dlx, command, ...args].filter(Boolean)
-  return execa(agent, params, { reject: false }) as unknown as Promise<{ stdout: string }>
+  return execa(agent, params, { reject: false }) as unknown as Promise<{
+    stdout: string
+  }>
 }
 
 function detectOxlintMessage(message: string) {
@@ -43,25 +54,34 @@ function detectOxlintMessage(message: string) {
   }
 }
 
-export async function runOxlintCommand(ids: string | string[], ctx: OxlintContext) {
+const RULE_ID_MATCHER = /\(([^)]+)\)/
+
+export async function runOxlintCommand(
+  ids: string | string[],
+  ctx: OxlintContext,
+) {
   const options = ctx.options
   const contentRecord: Record<string, string> = {}
 
   const paths = normalizeAbsolutePath(ids, options.rootDir)
 
-  const { stdout } = await runNpxCommand('oxlint', [
-    ...options.deny.map(d => ['-D', d]).flat(),
-    ...options.allow.map(a => ['-A', a]).flat(),
-    ...(options.config ? ['-c', options.config] : []),
-    ...options.params.split(' '),
-    options.fix ? '--fix' : '',
-    options.noIgnore ? '--no-ignore' : '',
-    options.quiet ? '--quiet' : '',
-    options.denyWarnings ? '--deny-warnings' : '',
-    '--format',
-    'json',
-    ...paths,
-  ], ctx)
+  const { stdout } = await runNpxCommand(
+    'oxlint',
+    [
+      ...options.deny.map(d => ['-D', d]).flat(),
+      ...options.allow.map(a => ['-A', a]).flat(),
+      ...(options.config ? ['-c', options.config] : []),
+      ...options.params.split(' '),
+      options.fix ? '--fix' : '',
+      options.noIgnore ? '--no-ignore' : '',
+      options.quiet ? '--quiet' : '',
+      options.denyWarnings ? '--deny-warnings' : '',
+      '--format',
+      'json',
+      ...paths,
+    ],
+    ctx,
+  )
 
   function format(value: string) {
     const index = value.indexOf('Finished')
@@ -71,7 +91,9 @@ export async function runOxlintCommand(ids: string | string[], ctx: OxlintContex
   }
 
   const results: LintResult[] = []
-  const outputs = destr<OxlintOutput | OxlintOutput['diagnostics']>(format(stdout))
+  const outputs = destr<OxlintOutput | OxlintOutput['diagnostics']>(
+    format(stdout),
+  )
   const diagnostics = Array.isArray(outputs) ? outputs : outputs.diagnostics
 
   for await (const { filename } of diagnostics) {
@@ -85,9 +107,9 @@ export async function runOxlintCommand(ids: string | string[], ctx: OxlintContex
     const [{ span }] = labels
     const lines = contentRecord[filename].slice(0, span.offset).split('\n')
     const line = lines.length
-    const column = lines[lines.length - 1].length + 1
+    const column = lines.at(-1).length + 1
     const { content } = detectOxlintMessage(message)
-    const ruleId = code.match(/\(([^)]+)\)/)?.[1] ?? ''
+    const ruleId = code.match(RULE_ID_MATCHER)?.[1] ?? ''
     const result: LintResult = {
       filename,
       linter: 'oxlint',
@@ -105,14 +127,20 @@ export async function runOxlintCommand(ids: string | string[], ctx: OxlintContex
 }
 
 function resolveESLintOptions({ options }: OxlintContext): ESLint.Options {
-  return defu({}, {
-    fix: options.fix,
-    overrideConfigFile: options.config || undefined,
-    ignore: !options.noIgnore,
-  })
+  return defu(
+    {},
+    {
+      fix: options.fix,
+      overrideConfigFile: options.config || undefined,
+      ignore: !options.noIgnore,
+    },
+  )
 }
 
-export async function runESLintCommand(ids: string | string[], ctx: OxlintContext) {
+export async function runESLintCommand(
+  ids: string | string[],
+  ctx: OxlintContext,
+) {
   const options = ctx.options
   const paths = normalizeAbsolutePath(ids, options.rootDir || '.')
 
@@ -146,7 +174,10 @@ export async function runESLintCommand(ids: string | string[], ctx: OxlintContex
   return results
 }
 
-export async function runLintCommand(ids: string | string[], ctx: OxlintContext): Promise<LintResult[]> {
+export async function runLintCommand(
+  ids: string | string[],
+  ctx: OxlintContext,
+): Promise<LintResult[]> {
   ctx.setHoldingStatus(true)
 
   if (isString(ids) ? !!ids : ids.length) {
@@ -155,10 +186,12 @@ export async function runLintCommand(ids: string | string[], ctx: OxlintContext)
     })
   }
 
-  const results = await Promise.all([
-    ctx.isExist('oxlint') ? runOxlintCommand(ids, ctx) : undefined,
-    ctx.isExist('eslint') ? runESLintCommand(ids, ctx) : undefined,
-  ].filter(Boolean))
+  const results = await Promise.all(
+    [
+      ctx.isExist('oxlint') ? runOxlintCommand(ids, ctx) : undefined,
+      ctx.isExist('eslint') ? runESLintCommand(ids, ctx) : undefined,
+    ].filter(Boolean),
+  )
 
   ctx.outputLintResults()
   ctx.setHoldingStatus(false)

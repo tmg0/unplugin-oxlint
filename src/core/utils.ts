@@ -1,7 +1,7 @@
 import type { CreateESLintOptions } from './types'
 import { isAbsolute, join } from 'node:path'
 import process from 'node:process'
-import ESLintNext from 'eslint/use-at-your-own-risk'
+import { ESLint } from 'eslint'
 import fse from 'fs-extra'
 import { hash } from 'ohash'
 
@@ -53,8 +53,5 @@ export function isDirectory(id: string) {
 }
 
 export async function createESLint(options: Partial<CreateESLintOptions> = {}) {
-  const isFlat = await ESLintNext.shouldUseFlatConfig()
-  if (!isFlat)
-    return new ESLintNext.LegacyESLint(options)
-  return new ESLintNext.FlatESLint(options)
+  return new ESLint(options)
 }
