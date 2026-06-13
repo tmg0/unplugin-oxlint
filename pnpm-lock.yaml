@@ -16,7 +16,7 @@ importers:
         version: 3.4.2
       defu:
         specifier: ^6.1.4
-        version: 6.1.4
+        version: 6.1.7
       destr:
         specifier: ^2.0.5
         version: 2.0.5
@@ -1350,6 +1350,9 @@ packages:
   ajv@6.14.0:
     resolution: {integrity: sha512-IWrosm/yrn43eiKqkfkHis7QioDleaXQHdDVPKg0FSwwd/DuvyX79TZnFOnYpB7dcsFAMmtFztZuXPDvSePkFw==}
 
+  ajv@6.15.0:
+    resolution: {integrity: sha512-fgFx7Hfoq60ytK2c7DhnF8jIvzYgOMxfugjLOSMHjLIPgenqa7S7oaagATUq99mV6IYvN2tRmC0wnTYX6iPbMw==}
+
   alien-signals@1.0.13:
     resolution: {integrity: sha512-OGj9yyTnJEttvzhTUWuscOvtqxq5vrhF7vL9oS0xJ2mK0ItPYP1/y+vCFebfxoEyAz0++1AIwJ5CMr+Fk3nDmg==}
 
@@ -1616,8 +1619,8 @@ packages:
   deep-is@0.1.4:
     resolution: {integrity: sha512-oIPzksmTg4/MriiaYGO+okXDT7ztn/w3Eptv/+gSIdMdKsJo0u4CfYNFJPy+4SKMuCqGw2wxnA+URMg3t8a/bQ==}
 
-  defu@6.1.4:
-    resolution: {integrity: sha512-mEQCMmwJu317oSz8CwdIOdwf3xMif1ttiM8LTufzc3g6kR+9Pe236twL8j3IYT1F7GfRgGcW6MWxzZjLIkuHIg==}
+  defu@6.1.7:
+    resolution: {integrity: sha512-7z22QmUWiQ/2d0KkdYmANbRUVABpZ9SNYyH5vx6PZ+nE5bcC0l7uFvEfHlyld/HcGBFTL536ClDt3DEcSlEJAQ==}
 
   depd@2.0.0:
     resolution: {integrity: sha512-g7nH6P6dyDioJogAAGprGpCtVImJhpPk/roCzdb3fIh61/s/nPsfR6onyMwkCAR/OlC3yBC0lESvUoQEAssIrw==}
@@ -2850,6 +2853,11 @@ packages:
 
   semver@7.7.4:
     resolution: {integrity: sha512-vFKC2IEtQnVhpT78h1Yp8wzwrf8CM+MzKMHGJZfBtzhZNycRFnXsHk6E5TxIkkMsgNS7mdX3AGB7x2QM2di4lA==}
+    engines: {node: '>=10'}
+    hasBin: true
+
+  semver@7.8.4:
+    resolution: {integrity: sha512-rUCObTnP32Q08R2uuIrt7r9PlEonuTmtuXYcW6s5kjdlj3xbnwe+21yXptAUYcMAABLkYYTtnmzb3w3EDZfueA==}
     engines: {node: '>=10'}
     hasBin: true
 
@@ -4122,11 +4130,11 @@ snapshots:
       '@typescript-eslint/parser': 8.57.2(eslint@10.1.0(jiti@2.4.2))(typescript@6.0.2)
       '@typescript-eslint/typescript-estree': 8.57.2(typescript@6.0.2)
       '@typescript-eslint/utils': 8.57.2(eslint@10.1.0(jiti@2.4.2))(typescript@6.0.2)
-      ajv: 6.14.0
+      ajv: 6.15.0
       eslint: 10.1.0(jiti@2.4.2)
       json-stable-stringify-without-jsonify: 1.0.1
       lodash.merge: 4.6.2
-      semver: 7.7.4
+      semver: 7.8.4
     transitivePeerDependencies:
       - supports-color
       - typescript
@@ -4358,6 +4366,13 @@ snapshots:
       json-schema-traverse: 0.4.1
       uri-js: 4.4.1
 
+  ajv@6.15.0:
+    dependencies:
+      fast-deep-equal: 3.1.3
+      fast-json-stable-stringify: 2.1.0
+      json-schema-traverse: 0.4.1
+      uri-js: 4.4.1
+
   alien-signals@1.0.13: {}
 
   ansi-regex@5.0.1: {}
@@ -4564,7 +4579,7 @@ snapshots:
 
   deep-is@0.1.4: {}
 
-  defu@6.1.4: {}
+  defu@6.1.7: {}
 
   depd@2.0.0: {}
 
@@ -6092,6 +6107,8 @@ snapshots:
 
   semver@7.7.4: {}
 
+  semver@7.8.4: {}
+
   send@1.2.0:
     dependencies:
       debug: 4.4.1
@@ -6295,7 +6312,7 @@ snapshots:
     dependencies:
       ansis: 4.2.0
       cac: 7.0.0
-      defu: 6.1.4
+      defu: 6.1.7
       empathic: 2.0.0
       hookable: 6.1.0
       import-without-cache: 0.2.5
