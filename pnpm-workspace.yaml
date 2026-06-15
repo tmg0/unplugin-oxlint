@@ -1,2 +1,9 @@
+allowBuilds:
+  esbuild: true
+
+shellEmulator: true
+
+trustPolicy: no-downgrade
+
 packages:
   - playground/*
